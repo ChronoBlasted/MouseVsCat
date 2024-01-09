@@ -26,7 +26,7 @@ public class GameManager : MonoSingleton<GameManager>
 
         UIManager.Instance.Init();
 
-        ResetGame();
+        BoardGameManager.Instance.Init();
     }
 
     private void Update()
@@ -95,13 +95,6 @@ public class GameManager : MonoSingleton<GameManager>
     {
         DOTween.KillAll();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    public void ResetGame()
-    {
-        UIManager.Instance.InitPanel();
-
-        UpdateGameState(GameState.MENU);
     }
 
     public void QuitApp() => Application.Quit();
