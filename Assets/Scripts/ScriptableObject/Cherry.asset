@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63e31b0603a87a345ae74138ac0ee565, type: 3}
-  m_Name: Rat
+  m_Name: Cherry
   m_EditorClassIdentifier: 
-  type: 3
+  type: 1
   pawnPrefab: {fileID: 2625029015959978944, guid: 2b4cf45fa3844a944a6716ab32b59bc0, type: 3}

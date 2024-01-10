@@ -52,9 +52,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5014022951158387009, guid: 95dbea0400862444a832caa385a22c32, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 859772771, guid: bf89d64babc18494a91ddefa0ef8bf5c, type: 3}
     - target: {fileID: 7703193288568677002, guid: 95dbea0400862444a832caa385a22c32, type: 3}
       propertyPath: m_Name
-      value: Rat
+      value: Orange
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

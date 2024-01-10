@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 499001060394761691}
   - component: {fileID: 5014022951158387009}
   m_Layer: 0
-  m_Name: Triangle
+  m_Name: Preview
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,6 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad354491f388f8428a4e86dff20f5e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _boxCollider: {fileID: 5437258478570669361}
+  _pawnObject: {fileID: 0}
 --- !u!61 &5437258478570669361
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63e31b0603a87a345ae74138ac0ee565, type: 3}
-  m_Name: Mouse
+  m_Name: Strawberry
   m_EditorClassIdentifier: 
   type: 2
-  pawnPrefab: {fileID: 2625029015959978944, guid: 5c2ecfd954c3ff04cb96507293f71953, type: 3}
+  pawnPrefab: {fileID: 2625029015959978944, guid: 266db35ce427cb74fb52a3feefd71c07, type: 3}

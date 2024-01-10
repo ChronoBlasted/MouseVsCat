@@ -26,14 +26,7 @@ public class BoardGameManager : MonoSingleton<BoardGameManager>
 
     public void NewRound()
     {
-        if (_currentRound <= 20)
-        {
-            PoolManager.Instance.SpawnFromPool("Cheese", _newPawnSpawn.position, _newPawnSpawn.rotation);
-        }
-        else
-        {
-            PoolManager.Instance.SpawnFromPool("Mouse", _newPawnSpawn.position, _newPawnSpawn.rotation);
-        }
+        PoolManager.Instance.SpawnFromPool("Cherry", _newPawnSpawn.position, _newPawnSpawn.rotation);
 
         _currentRound++;
     }

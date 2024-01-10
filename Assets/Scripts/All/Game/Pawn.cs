@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Pawn : MonoBehaviour
 {
+    [SerializeField] BoxCollider2D _boxCollider;
     [SerializeField] PawnObject _pawnObject;
     Vector3 _mousePositionOffset;
 
     public PawnObject PawnObject { get => _pawnObject; }
+    public BoxCollider2D BoxCollider { get => _boxCollider; }
 
     Vector3 GetMouseWorldPosition()
     {

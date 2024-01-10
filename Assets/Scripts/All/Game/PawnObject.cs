@@ -3,11 +3,15 @@ using UnityEngine;
 public enum PawnType
 {
     None = 0,
-    Cheese = 1,
-    Mouse = 2,
-    Rat = 3,
-    Cat = 4,
-    Dog = 5,
+    Cherry = 1,
+    Strawberry = 2,
+    Grapes = 3,
+    Banana = 4,
+    Orange = 5,
+    Apple = 6,
+    Pear = 7,
+    Ananas = 8,
+    Watermelon = 9,
 }
 
 [CreateAssetMenu(fileName = "NewPawnObject", menuName = "GameScriptable/NewPawnObject", order = 1)]

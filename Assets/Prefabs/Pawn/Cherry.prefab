@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: -1239572951793871564, guid: 95dbea0400862444a832caa385a22c32, type: 3}
       propertyPath: _pawnObject
       value: 
-      objectReference: {fileID: 11400000, guid: 037dd31a4df18fd479577aed350a0cc7, type: 2}
+      objectReference: {fileID: 11400000, guid: 6e9dc98142dca8c4b98662ea460637f8, type: 2}
     - target: {fileID: 867259365514530605, guid: 95dbea0400862444a832caa385a22c32, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -53,20 +53,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5014022951158387009, guid: 95dbea0400862444a832caa385a22c32, type: 3}
-      propertyPath: m_Color.b
-      value: 0.2264151
-      objectReference: {fileID: 0}
-    - target: {fileID: 5014022951158387009, guid: 95dbea0400862444a832caa385a22c32, type: 3}
-      propertyPath: m_Color.g
-      value: 0.2264151
-      objectReference: {fileID: 0}
-    - target: {fileID: 5014022951158387009, guid: 95dbea0400862444a832caa385a22c32, type: 3}
-      propertyPath: m_Color.r
-      value: 0.2264151
-      objectReference: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -439098747, guid: bf89d64babc18494a91ddefa0ef8bf5c, type: 3}
     - target: {fileID: 7703193288568677002, guid: 95dbea0400862444a832caa385a22c32, type: 3}
       propertyPath: m_Name
-      value: Mouse
+      value: Cherry
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

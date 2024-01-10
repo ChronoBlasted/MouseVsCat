@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: -1239572951793871564, guid: 95dbea0400862444a832caa385a22c32, type: 3}
       propertyPath: _pawnObject
       value: 
-      objectReference: {fileID: 11400000, guid: fb693301d300c564baa2d868c0025955, type: 2}
+      objectReference: {fileID: 11400000, guid: 629723ae16948194bab4480bcbe2aa5d, type: 2}
     - target: {fileID: 867259365514530605, guid: 95dbea0400862444a832caa385a22c32, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -52,9 +52,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5014022951158387009, guid: 95dbea0400862444a832caa385a22c32, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1559880934, guid: 97014d890251b524ab2536b61d700f0b, type: 3}
     - target: {fileID: 7703193288568677002, guid: 95dbea0400862444a832caa385a22c32, type: 3}
       propertyPath: m_Name
-      value: Dog
+      value: Ananas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

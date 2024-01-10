@@ -5,16 +5,15 @@ using UnityEngine;
 public class Cell : MonoBehaviour
 {
     public Cell TopCell, RightCell, BottomCell, LeftCell;
-
     [SerializeField] Transform _spawnPawnTransform;
 
     Pawn _currentPawn;
 
     //Cache 
-    List<Cell> _adjacentSamePawn = new List<Cell>();
+    List<Cell> _adjacentSameCell = new List<Cell>();
 
     public Pawn CurrentPawn { get => _currentPawn; }
-    public List<Cell> AdjacentSamePawn { get => _adjacentSamePawn; }
+    public List<Cell> AdjacentSameCell { get => _adjacentSameCell; }
 
     public void SetCurrentPawn(Pawn newPawn)
     {
@@ -23,8 +22,25 @@ public class Cell : MonoBehaviour
         _currentPawn.transform.SetParent(_spawnPawnTransform);
         _currentPawn.transform.localPosition = Vector3.zero;
 
-        CheckAdjacent();
+        _currentPawn.BoxCollider.enabled = false;
+
+        CheckAdjacentCell(null);
+
+        if (_adjacentSameCell.Count >= 2) Merge(this);
+        else if (_adjacentSameCell.Count >= 1)
+        {
+            foreach (var cell in _adjacentSameCell)
+            {
+                cell.CheckAdjacentCell(this);
+
+                if (cell.AdjacentSameCell.Count >= 1)
+                {
+                    Merge(this);
+                }
+            }
+        }
     }
+
 
     public void ResetCell()
     {
@@ -34,81 +50,82 @@ public class Cell : MonoBehaviour
         }
     }
 
-    public void CheckAdjacent()
+    public void CheckAdjacentCell(Cell baseCell)
     {
-        int sameAdjacent = 0;
+        _adjacentSameCell.Clear();
 
         if (TopCell != null)
         {
-            if (TopCell.CurrentPawn != null)
+            if (TopCell != baseCell)
             {
-                if (TopCell.CurrentPawn.PawnObject.type == CurrentPawn.PawnObject.type)
+                if (TopCell.CurrentPawn != null)
                 {
-                    sameAdjacent++;
-
-                    _adjacentSamePawn.Add(TopCell);
+                    if (TopCell.CurrentPawn.PawnObject.type == CurrentPawn.PawnObject.type)
+                    {
+                        _adjacentSameCell.Add(TopCell);
+                    }
                 }
             }
         }
 
         if (RightCell != null)
         {
-            if (RightCell.CurrentPawn != null)
+            if (RightCell != baseCell)
             {
-                if (RightCell.CurrentPawn.PawnObject.type == CurrentPawn.PawnObject.type)
+                if (RightCell.CurrentPawn != null)
                 {
-                    sameAdjacent++;
-
-                    _adjacentSamePawn.Add(RightCell);
+                    if (RightCell.CurrentPawn.PawnObject.type == CurrentPawn.PawnObject.type)
+                    {
+                        _adjacentSameCell.Add(RightCell);
+                    }
                 }
             }
         }
 
         if (BottomCell != null)
         {
-            if (BottomCell.CurrentPawn != null)
+            if (BottomCell != baseCell)
             {
-                if (BottomCell.CurrentPawn.PawnObject.type == CurrentPawn.PawnObject.type)
+                if (BottomCell.CurrentPawn != null)
                 {
-                    sameAdjacent++;
-
-                    _adjacentSamePawn.Add(BottomCell);
+                    if (BottomCell.CurrentPawn.PawnObject.type == CurrentPawn.PawnObject.type)
+                    {
+                        _adjacentSameCell.Add(BottomCell);
+                    }
                 }
             }
         }
 
         if (LeftCell != null)
         {
-            if (LeftCell.CurrentPawn != null)
+            if (LeftCell != baseCell)
             {
-                if (LeftCell.CurrentPawn.PawnObject.type == CurrentPawn.PawnObject.type)
+                if (LeftCell.CurrentPawn != null)
                 {
-                    sameAdjacent++;
-
-                    _adjacentSamePawn.Add(LeftCell);
+                    if (LeftCell.CurrentPawn.PawnObject.type == CurrentPawn.PawnObject.type)
+                    {
+                        _adjacentSameCell.Add(LeftCell);
+                    }
                 }
             }
-        }
-
-        if (sameAdjacent >= 2)
-        {
-            Merge(this);
         }
     }
 
     public void Merge(Cell mergeCell)
     {
-        foreach (Cell adjacentPawn in _adjacentSamePawn)
+        foreach (Cell adjacentPawn in _adjacentSameCell)
         {
-            adjacentPawn.Merge(this);
-        }
+            adjacentPawn.CheckAdjacentCell(this);
 
-        _adjacentSamePawn.Clear();
+            adjacentPawn.Merge(mergeCell);
+        }
 
         _currentPawn.transform.DOMove(mergeCell.CurrentPawn.transform.position, .2f).OnComplete(() =>
         {
             _currentPawn.transform.parent = null;
             _currentPawn.gameObject.SetActive(false);
+
+            _currentPawn.BoxCollider.enabled = true;
 
             Pawn newPawn = null;
 
@@ -116,20 +133,32 @@ public class Cell : MonoBehaviour
             {
                 switch (_currentPawn.PawnObject.type)
                 {
-                    case PawnType.Cheese:
-                        newPawn = PoolManager.Instance.SpawnFromPool("Mouse", transform.position, transform.rotation).GetComponent<Pawn>();
+                    case PawnType.Cherry:
+                        newPawn = PoolManager.Instance.SpawnFromPool("Strawberry", transform.position, transform.rotation).GetComponent<Pawn>();
                         break;
-                    case PawnType.Mouse:
-                        newPawn = PoolManager.Instance.SpawnFromPool("Rat", transform.position, transform.rotation).GetComponent<Pawn>();
+                    case PawnType.Strawberry:
+                        newPawn = PoolManager.Instance.SpawnFromPool("Grapes", transform.position, transform.rotation).GetComponent<Pawn>();
                         break;
-                    case PawnType.Rat:
-                        newPawn = PoolManager.Instance.SpawnFromPool("Cheese", transform.position, transform.rotation).GetComponent<Pawn>();
+                    case PawnType.Grapes:
+                        newPawn = PoolManager.Instance.SpawnFromPool("Banana", transform.position, transform.rotation).GetComponent<Pawn>();
                         break;
-                    case PawnType.Cat:
-                        newPawn = PoolManager.Instance.SpawnFromPool("Cheese", transform.position, transform.rotation).GetComponent<Pawn>();
+                    case PawnType.Banana:
+                        newPawn = PoolManager.Instance.SpawnFromPool("Orange", transform.position, transform.rotation).GetComponent<Pawn>();
                         break;
-                    case PawnType.Dog:
-                        newPawn = PoolManager.Instance.SpawnFromPool("Cheese", transform.position, transform.rotation).GetComponent<Pawn>();
+                    case PawnType.Orange:
+                        newPawn = PoolManager.Instance.SpawnFromPool("Apple", transform.position, transform.rotation).GetComponent<Pawn>();
+                        break;
+                    case PawnType.Apple:
+                        newPawn = PoolManager.Instance.SpawnFromPool("Pear", transform.position, transform.rotation).GetComponent<Pawn>();
+                        break;
+                    case PawnType.Pear:
+                        newPawn = PoolManager.Instance.SpawnFromPool("Ananas", transform.position, transform.rotation).GetComponent<Pawn>();
+                        break;
+                    case PawnType.Ananas:
+                        newPawn = PoolManager.Instance.SpawnFromPool("Watermelon", transform.position, transform.rotation).GetComponent<Pawn>();
+                        break;
+                    case PawnType.Watermelon:
+                        newPawn = null;
                         break;
                     default:
                         break;
