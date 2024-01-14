@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class GamePanel : Panel
 {
+    [SerializeField] TMP_Text _scoreText;
 
     public override void Init()
     {
@@ -25,5 +26,10 @@ public class GamePanel : Panel
 
     public void StartGame()
     {
+    }
+
+    public void UpdateScore(int newScore)
+    {
+        _scoreText.text = newScore.ToString();
     }
 }

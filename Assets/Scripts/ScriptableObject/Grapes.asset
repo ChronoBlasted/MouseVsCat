@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   pawnPrefab: {fileID: 2625029015959978944, guid: 60313d36561f0cf449502fd16798e04b, type: 3}
+  ScoreValue: 4

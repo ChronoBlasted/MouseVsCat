@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum PawnType
@@ -19,4 +20,12 @@ public class PawnObject : ScriptableObject
 {
     public PawnType type;
     public Pawn pawnPrefab;
+    public int ScoreValue;
+}
+
+[Serializable]
+public class PawnProb
+{
+    public PawnType type;
+    public float prob;
 }

@@ -27,6 +27,10 @@ public class GameManager : MonoSingleton<GameManager>
         UIManager.Instance.Init();
 
         BoardGameManager.Instance.Init();
+
+        CameraManager.Instance.Init();
+
+        UpdateGameState(GameState.GAME);
     }
 
     private void Update()

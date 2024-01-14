@@ -47,9 +47,5 @@ public class Pawn : MonoBehaviour
         {
             transform.position = BoardGameManager.Instance.NewPawnSpawn.position;
         }
-
-
     }
-
-
 }

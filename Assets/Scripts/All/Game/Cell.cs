@@ -19,6 +19,8 @@ public class Cell : MonoBehaviour
     {
         _currentPawn = newPawn;
 
+        ProfileManager.Instance.UpdateScore(_currentPawn.PawnObject.ScoreValue);
+
         _currentPawn.transform.SetParent(_spawnPawnTransform);
         _currentPawn.transform.localPosition = Vector3.zero;
 
