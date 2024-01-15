@@ -24,8 +24,9 @@ public class GamePanel : Panel
         base.ClosePanel();
     }
 
-    public void StartGame()
+    public void OpenSettings()
     {
+        UIManager.Instance.OpenPanel(UIManager.Instance.SettingPanel);
     }
 
     public void UpdateScore(int newScore)

@@ -41,7 +41,7 @@ public class UIManager : MonoSingleton<UIManager>
         _settingPanel.Init();
     }
 
-    void ChangePanel(Panel newPanel, bool _isAddingCanvas = false)
+    public void OpenPanel(Panel newPanel, bool _isAddingCanvas = false)
     {
         if (newPanel == _currentPanel) return;
 
@@ -93,36 +93,36 @@ public class UIManager : MonoSingleton<UIManager>
 
     void HandleMenu()
     {
-        ChangePanel(_menuPanel);
+        OpenPanel(_menuPanel);
     }
     void HandleGame()
     {
-        ChangePanel(_gamePanel);
+        OpenPanel(_gamePanel);
     }
     void HandlePause()
     {
-        ChangePanel(_pausePanel, true);
+        OpenPanel(_pausePanel, true);
     }
     void HandleEnd()
     {
-        ChangePanel(_endGamePanel);
+        OpenPanel(_endGamePanel);
     }
     void HandleWait()
     {
     }
     public void HandleRevive()
     {
-        ChangePanel(_gamePanel);
+        OpenPanel(_gamePanel);
     }
 
     public void HandleOpenSettings()
     {
-        ChangePanel(_settingPanel, true);
+        OpenPanel(_settingPanel, true);
     }
 
     public void HandleOpenBlank()
     {
-        ChangePanel(_blankPanel);
+        OpenPanel(_blankPanel);
     }
 
     #endregion

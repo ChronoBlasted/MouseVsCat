@@ -28,7 +28,14 @@ public class GameManager : MonoSingleton<GameManager>
 
         BoardGameManager.Instance.Init();
 
+        StartCoroutine(LaunchGame());
+
         CameraManager.Instance.Init();
+    }
+
+    IEnumerator LaunchGame()
+    {
+        yield return new WaitForEndOfFrame();
 
         UpdateGameState(GameState.GAME);
     }

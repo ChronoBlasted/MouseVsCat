@@ -29,7 +29,7 @@ public class Pawn : MonoBehaviour
 
     private void OnMouseUp()
     {
-        if (transform.position.y > -3.3f && transform.position.y < 4.4f && transform.position.x > -3.3f && transform.position.x < 3.3f)
+        if (transform.position.y > -1.75f && transform.position.y < 3.85f && transform.position.x > -2.75f && transform.position.x < 2.75f)
         {
             var cell = BoardGameManager.Instance.Board.FindClosestCell(transform.position);
 

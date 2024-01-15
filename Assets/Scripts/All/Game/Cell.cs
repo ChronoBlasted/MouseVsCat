@@ -6,6 +6,7 @@ public class Cell : MonoBehaviour
 {
     public Cell TopCell, RightCell, BottomCell, LeftCell;
     [SerializeField] Transform _spawnPawnTransform;
+    [SerializeField] ParticleSystem _beforeMergePS, _afterMergePS;
 
     Pawn _currentPawn;
 
@@ -122,6 +123,11 @@ public class Cell : MonoBehaviour
             adjacentPawn.Merge(mergeCell);
         }
 
+        if (mergeCell == this)
+        {
+            _beforeMergePS.Play();
+        }
+
         _currentPawn.transform.DOMove(mergeCell.CurrentPawn.transform.position, .2f).OnComplete(() =>
         {
             _currentPawn.transform.parent = null;
@@ -133,6 +139,8 @@ public class Cell : MonoBehaviour
 
             if (mergeCell == this)
             {
+                _afterMergePS.Play();
+
                 switch (_currentPawn.PawnObject.type)
                 {
                     case PawnType.Cherry:
