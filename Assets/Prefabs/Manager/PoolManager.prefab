@@ -44,4 +44,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbc3ded50f564e2418138400561e4f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pools: []
+  pools:
+  - tag: Cherry
+    prefab: {fileID: 2325795259168633982, guid: 2b4cf45fa3844a944a6716ab32b59bc0, type: 3}
+    size: 21
+  - tag: Strawberry
+    prefab: {fileID: 2325795259168633982, guid: 266db35ce427cb74fb52a3feefd71c07, type: 3}
+    size: 21
+  - tag: Grapes
+    prefab: {fileID: 2325795259168633982, guid: 60313d36561f0cf449502fd16798e04b, type: 3}
+    size: 21
+  - tag: Banana
+    prefab: {fileID: 2325795259168633982, guid: 5c2ecfd954c3ff04cb96507293f71953, type: 3}
+    size: 21
+  - tag: Orange
+    prefab: {fileID: 2325795259168633982, guid: 67d4586ff16a1724d903b014f3821b91, type: 3}
+    size: 21
+  - tag: Apple
+    prefab: {fileID: 2325795259168633982, guid: 2c96667e20515474eb0d640de8765c0d, type: 3}
+    size: 21
+  - tag: Pear
+    prefab: {fileID: 2325795259168633982, guid: 9a0ca6f719c21e24ba439601e882be95, type: 3}
+    size: 21
+  - tag: Ananas
+    prefab: {fileID: 2325795259168633982, guid: 5671dc0748e6e3543b2164cb90214e24, type: 3}
+    size: 21
+  - tag: Watermelon
+    prefab: {fileID: 2325795259168633982, guid: 59550d05006e69d44baa0fb2bed2b992, type: 3}
+    size: 21

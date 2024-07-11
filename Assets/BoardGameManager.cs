@@ -6,6 +6,7 @@ public class BoardGameManager : MonoSingleton<BoardGameManager>
 {
     [SerializeField] Board _board;
     [SerializeField] Transform _newPawnSpawn;
+    [SerializeField] Transform _paradiseSpawn;
     [SerializeField] List<PawnProb> pawnProbs = new List<PawnProb>();
 
     int _currentRound;

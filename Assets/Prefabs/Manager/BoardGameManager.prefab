@@ -57,3 +57,5 @@ MonoBehaviour:
     prob: 10
   - type: 5
     prob: 5
+  - type: 6
+    prob: 1

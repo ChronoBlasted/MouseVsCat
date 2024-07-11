@@ -6,20 +6,23 @@ using UnityEngine;
 
 public class ProfileManager : MonoSingleton<ProfileManager>
 {
-    [SerializeField] int _score, _highScore;
+    [SerializeField] int _score, _highScore, _coins;
 
     public int Score { get => _score; }
+
+    public event Action OnCoinUpdate;
 
     public void Init()
     {
         _highScore = SaveHandler.LoadValue("highScore", 0);
-        ResetProfile();
+        _coins = SaveHandler.LoadValue("coins", 0);
     }
 
     public void ResetProfile()
     {
         _score = 0;
         PlayerPrefs.DeleteKey("highScore");
+        PlayerPrefs.DeleteKey("coins");
         UpdateScore(0);
     }
 
@@ -36,5 +39,14 @@ public class ProfileManager : MonoSingleton<ProfileManager>
         }
 
         UIManager.Instance.GamePanel.UpdateScore(_score);
+    }
+
+    public void AddCoins(int amountToAdd)
+    {
+        _coins += amountToAdd;
+
+        if (_coins < 0) _coins = 0;
+
+        OnCoinUpdate?.Invoke();
     }
 }
