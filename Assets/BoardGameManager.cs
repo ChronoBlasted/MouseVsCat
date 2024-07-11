@@ -6,13 +6,14 @@ public class BoardGameManager : MonoSingleton<BoardGameManager>
 {
     [SerializeField] Board _board;
     [SerializeField] Transform _newPawnSpawn;
-    [SerializeField] Transform _paradiseSpawn;
+    [SerializeField] Cell _paradiseCell;
     [SerializeField] List<PawnProb> pawnProbs = new List<PawnProb>();
 
     int _currentRound;
 
     public Board Board { get => _board; }
     public Transform NewPawnSpawn { get => _newPawnSpawn; }
+    public Cell ParadiseCell { get => _paradiseCell; }
 
     public void Init()
     {

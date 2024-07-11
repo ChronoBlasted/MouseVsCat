@@ -18,12 +18,12 @@ public class Pawn : MonoBehaviour
 
     private void OnMouseDown()
     {
-        _mousePositionOffset = transform.position - GetMouseWorldPosition();
+        _mousePositionOffset = transform.localPosition - GetMouseWorldPosition();
     }
 
     private void OnMouseDrag()
     {
-        transform.position = GetMouseWorldPosition() + _mousePositionOffset;
+        transform.localPosition = GetMouseWorldPosition() + _mousePositionOffset;
     }
 
 
@@ -36,36 +36,44 @@ public class Pawn : MonoBehaviour
 
         RaycastHit2D hitInfo;
 
-        Debug.DrawRay(rayOrigin, rayDirection, Color.green, 5f);
-
         if (hitInfo = Physics2D.Raycast(rayOrigin, rayDirection))
         {
-
             if (hitInfo.transform.tag == "DropArea")
             {
                 Cell cell = hitInfo.transform.GetComponent<Cell>();
 
                 if (cell.CurrentPawn != null)
                 {
-                    transform.position = BoardGameManager.Instance.NewPawnSpawn.position;
+                    ResetPawn();
                 }
                 else
                 {
+                    if (transform.tag == "Paradise")
+                    {
+                        BoardGameManager.Instance.ParadiseCell.ResetCell();
+                    }
+                    else
+                    {
+                        BoardGameManager.Instance.NewRound();
+                    }
+
                     cell.SetCurrentPawn(this);
-                    BoardGameManager.Instance.NewRound();
                 }
             }
             else
             {
-                transform.position = BoardGameManager.Instance.NewPawnSpawn.position;
-                _boxCollider.enabled = true;
-
+                ResetPawn();
             }
         }
         else
         {
-            transform.position = BoardGameManager.Instance.NewPawnSpawn.position;
-            _boxCollider.enabled = true;
+            ResetPawn();
         }
+    }
+
+    public void ResetPawn()
+    {
+        transform.localPosition = Vector3.zero;
+        _boxCollider.enabled = true;
     }
 }

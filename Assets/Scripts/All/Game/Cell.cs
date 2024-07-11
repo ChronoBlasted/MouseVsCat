@@ -7,6 +7,7 @@ public class Cell : MonoBehaviour
     public Cell TopCell, RightCell, BottomCell, LeftCell;
     [SerializeField] Transform _spawnPawnTransform;
     [SerializeField] ParticleSystem _beforeMergePS, _afterMergePS;
+    [SerializeField] bool isParadiseCell;
 
     Pawn _currentPawn;
 
@@ -20,12 +21,13 @@ public class Cell : MonoBehaviour
     {
         _currentPawn = newPawn;
 
-        ProfileManager.Instance.UpdateScore(_currentPawn.PawnObject.ScoreValue);
+        if (!isParadiseCell) ProfileManager.Instance.UpdateScore(_currentPawn.PawnObject.ScoreValue);
+        else newPawn.tag = "Paradise";
 
         _currentPawn.transform.SetParent(_spawnPawnTransform);
         _currentPawn.transform.localPosition = Vector3.zero;
 
-        _currentPawn.BoxCollider.enabled = false;
+        _currentPawn.BoxCollider.enabled = isParadiseCell;
 
         CheckAdjacentCell(null);
 
