@@ -18,7 +18,7 @@ public class Pawn : MonoBehaviour
 
     private void OnMouseDown()
     {
-        _mousePositionOffset = gameObject.transform.position - GetMouseWorldPosition();
+        _mousePositionOffset = transform.position - GetMouseWorldPosition();
     }
 
     private void OnMouseDrag()
@@ -29,23 +29,43 @@ public class Pawn : MonoBehaviour
 
     private void OnMouseUp()
     {
-        if (transform.position.y > -3.5f && transform.position.y < 3.85f && transform.position.x > -2.75f && transform.position.x < 2.75f)
-        {
-            var cell = BoardGameManager.Instance.Board.FindClosestCell(transform.position);
+        _boxCollider.enabled = false;
 
-            if (cell.CurrentPawn != null)
+        var rayOrigin = GetMouseWorldPosition() - Camera.main.transform.position;
+        var rayDirection = Camera.main.transform.position;
+
+        RaycastHit2D hitInfo;
+
+        Debug.DrawRay(rayOrigin, rayDirection, Color.green, 5f);
+
+        if (hitInfo = Physics2D.Raycast(rayOrigin, rayDirection))
+        {
+
+            if (hitInfo.transform.tag == "DropArea")
             {
-                transform.position = BoardGameManager.Instance.NewPawnSpawn.position;
+                Cell cell = hitInfo.transform.GetComponent<Cell>();
+
+                if (cell.CurrentPawn != null)
+                {
+                    transform.position = BoardGameManager.Instance.NewPawnSpawn.position;
+                }
+                else
+                {
+                    cell.SetCurrentPawn(this);
+                    BoardGameManager.Instance.NewRound();
+                }
             }
             else
             {
-                cell.SetCurrentPawn(this);
-                BoardGameManager.Instance.NewRound();
+                transform.position = BoardGameManager.Instance.NewPawnSpawn.position;
+                _boxCollider.enabled = true;
+
             }
         }
         else
         {
             transform.position = BoardGameManager.Instance.NewPawnSpawn.position;
+            _boxCollider.enabled = true;
         }
     }
 }
