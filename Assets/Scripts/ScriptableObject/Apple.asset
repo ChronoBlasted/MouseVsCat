@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Apple
   m_EditorClassIdentifier: 
   type: 6
-  pawnPrefab: {fileID: 2625029015959978944, guid: 2c96667e20515474eb0d640de8765c0d, type: 3}
+  sprite: {fileID: 367011801, guid: bf89d64babc18494a91ddefa0ef8bf5c, type: 3}
   ScoreValue: 32

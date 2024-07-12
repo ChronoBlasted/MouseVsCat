@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Banana
   m_EditorClassIdentifier: 
   type: 4
-  pawnPrefab: {fileID: 2625029015959978944, guid: 5c2ecfd954c3ff04cb96507293f71953, type: 3}
+  sprite: {fileID: -409369227, guid: 97014d890251b524ab2536b61d700f0b, type: 3}
   ScoreValue: 16

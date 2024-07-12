@@ -22,8 +22,9 @@ public class Cell : MonoBehaviour
     {
         _currentPawn = newPawn;
 
-        if (!isParadiseCell) ProfileManager.Instance.UpdateScore(_currentPawn.PawnObject.ScoreValue);
-        else newPawn.tag = "Paradise";
+        if (_currentPawn.tag != "Paradise") ProfileManager.Instance.UpdateScore(_currentPawn.PawnObject.ScoreValue);
+
+        _currentPawn.tag = "Paradise";
 
         _currentPawn.transform.SetParent(_spawnPawnTransform);
 
@@ -136,9 +137,10 @@ public class Cell : MonoBehaviour
         _currentPawn.transform.DOMove(mergeCell._spawnPawnTransform.transform.position, .2f).OnComplete(() =>
         {
             _currentPawn.transform.parent = null;
-            _currentPawn.gameObject.SetActive(false);
 
-            _currentPawn.BoxCollider.enabled = true;
+            PoolManager.Instance.ResetFromPool("Pawn", _currentPawn.gameObject);
+
+            _currentPawn.ResetPawn();
 
             Pawn newPawn = null;
 
@@ -146,38 +148,13 @@ public class Cell : MonoBehaviour
             {
                 _afterMergePS.Play();
 
-                switch (_currentPawn.PawnObject.type)
-                {
-                    case PawnType.Cherry:
-                        newPawn = PoolManager.Instance.SpawnFromPool("Strawberry", transform.position, transform.rotation).GetComponent<Pawn>();
-                        break;
-                    case PawnType.Strawberry:
-                        newPawn = PoolManager.Instance.SpawnFromPool("Grapes", transform.position, transform.rotation).GetComponent<Pawn>();
-                        break;
-                    case PawnType.Grapes:
-                        newPawn = PoolManager.Instance.SpawnFromPool("Banana", transform.position, transform.rotation).GetComponent<Pawn>();
-                        break;
-                    case PawnType.Banana:
-                        newPawn = PoolManager.Instance.SpawnFromPool("Orange", transform.position, transform.rotation).GetComponent<Pawn>();
-                        break;
-                    case PawnType.Orange:
-                        newPawn = PoolManager.Instance.SpawnFromPool("Apple", transform.position, transform.rotation).GetComponent<Pawn>();
-                        break;
-                    case PawnType.Apple:
-                        newPawn = PoolManager.Instance.SpawnFromPool("Pear", transform.position, transform.rotation).GetComponent<Pawn>();
-                        break;
-                    case PawnType.Pear:
-                        newPawn = PoolManager.Instance.SpawnFromPool("Ananas", transform.position, transform.rotation).GetComponent<Pawn>();
-                        break;
-                    case PawnType.Ananas:
-                        newPawn = PoolManager.Instance.SpawnFromPool("Watermelon", transform.position, transform.rotation).GetComponent<Pawn>();
-                        break;
-                    case PawnType.Watermelon:
-                        newPawn = null;
-                        break;
-                    default:
-                        break;
-                }
+                newPawn = PoolManager.Instance.SpawnFromPool("Pawn", transform.position, transform.rotation).GetComponent<Pawn>();
+
+                PawnType nextPawnType = DataUtils.Instance.GetNextPawnTypeByPawnType(_currentPawn.PawnObject.type);
+
+                newPawn.PawnObject = DataUtils.Instance.GetPawnObjectByType(nextPawnType);
+
+                newPawn.Init();
             }
 
             ResetCell();

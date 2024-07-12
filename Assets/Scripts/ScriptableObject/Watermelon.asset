@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Watermelon
   m_EditorClassIdentifier: 
   type: 9
-  pawnPrefab: {fileID: 2625029015959978944, guid: 59550d05006e69d44baa0fb2bed2b992, type: 3}
+  sprite: {fileID: -561714013, guid: bf89d64babc18494a91ddefa0ef8bf5c, type: 3}
   ScoreValue: 256

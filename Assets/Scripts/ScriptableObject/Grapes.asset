@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Grapes
   m_EditorClassIdentifier: 
   type: 3
-  pawnPrefab: {fileID: 2625029015959978944, guid: 60313d36561f0cf449502fd16798e04b, type: 3}
+  sprite: {fileID: -823725478, guid: bf89d64babc18494a91ddefa0ef8bf5c, type: 3}
   ScoreValue: 4

@@ -19,7 +19,7 @@ public enum PawnType
 public class PawnObject : ScriptableObject
 {
     public PawnType type;
-    public Pawn pawnPrefab;
+    public Sprite sprite;
     public int ScoreValue;
 }
 

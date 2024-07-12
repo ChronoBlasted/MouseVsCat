@@ -47,7 +47,14 @@ public class BoardGameManager : MonoSingleton<BoardGameManager>
 
             if (randNum <= cumulativePercentage)
             {
-                PoolManager.Instance.SpawnFromPool(pawnProbs[i].type.ToString(), _newPawnSpawn.position, _newPawnSpawn.rotation);
+                Pawn objectToPool = PoolManager.Instance.SpawnFromPool("Pawn", _newPawnSpawn.position, _newPawnSpawn.rotation).GetComponent<Pawn>();
+
+                objectToPool.transform.SetParent(_newPawnSpawn);
+
+                objectToPool.PawnObject = DataUtils.Instance.GetPawnObjectByType(pawnProbs[i].type);
+
+                objectToPool.Init();
+
                 break;
             }
         }

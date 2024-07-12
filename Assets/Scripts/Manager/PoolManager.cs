@@ -31,7 +31,7 @@ public class PoolManager : MonoSingleton<PoolManager>
 
             for (int i = 0; i < pool.size; i++)
             {
-                GameObject obj = Instantiate(pool.prefab, BoardGameManager.Instance.NewPawnSpawn);
+                GameObject obj = Instantiate(pool.prefab);
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
@@ -57,14 +57,26 @@ public class PoolManager : MonoSingleton<PoolManager>
                 pooledObject.OnObjectSpawn();
             }
 
-            poolDictionary[tag].Enqueue(objectToSpawn);
-
             return objectToSpawn;
         }
         else
         {
             Debug.Log("Pool with tag " + tag + " doesn't exist.");
             return null;
+        }
+    }
+
+    public void ResetFromPool(string tag, GameObject objectToReset)
+    {
+        if (poolDictionary.ContainsKey(tag))
+        {
+            objectToReset.SetActive(false);
+
+            poolDictionary[tag].Enqueue(objectToReset);
+        }
+        else
+        {
+            Debug.Log("Pool with tag " + tag + " doesn't exist.");
         }
     }
 }

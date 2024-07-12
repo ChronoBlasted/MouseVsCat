@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Cherry
   m_EditorClassIdentifier: 
   type: 1
-  pawnPrefab: {fileID: 2625029015959978944, guid: 2b4cf45fa3844a944a6716ab32b59bc0, type: 3}
+  sprite: {fileID: -439098747, guid: bf89d64babc18494a91ddefa0ef8bf5c, type: 3}
   ScoreValue: 1

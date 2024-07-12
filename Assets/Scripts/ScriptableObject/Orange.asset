@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Orange
   m_EditorClassIdentifier: 
   type: 5
-  pawnPrefab: {fileID: 2625029015959978944, guid: 67d4586ff16a1724d903b014f3821b91, type: 3}
+  sprite: {fileID: 859772771, guid: bf89d64babc18494a91ddefa0ef8bf5c, type: 3}
   ScoreValue: 64

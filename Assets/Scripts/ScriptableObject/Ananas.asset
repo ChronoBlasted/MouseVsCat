@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Ananas
   m_EditorClassIdentifier: 
   type: 8
-  pawnPrefab: {fileID: 2625029015959978944, guid: 5671dc0748e6e3543b2164cb90214e24, type: 3}
+  sprite: {fileID: -1559880934, guid: 97014d890251b524ab2536b61d700f0b, type: 3}
+  ScoreValue: 0

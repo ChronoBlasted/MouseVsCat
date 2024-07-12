@@ -50,3 +50,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fb693301d300c564baa2d868c0025955, type: 2}
   - {fileID: 11400000, guid: 037dd31a4df18fd479577aed350a0cc7, type: 2}
   - {fileID: 11400000, guid: 5f69195d5a6c4b448aef1867330ff775, type: 2}
+  - {fileID: 11400000, guid: e83a4bba7a86f5b499307e516022c4c7, type: 2}
+  - {fileID: 11400000, guid: 8ce46a7b898e5ba439759d7fa8e56bfa, type: 2}
+  - {fileID: 11400000, guid: 629723ae16948194bab4480bcbe2aa5d, type: 2}
+  - {fileID: 11400000, guid: 10215931c7441e143b2746f9c442f0f6, type: 2}
+  fruitSprite: []
