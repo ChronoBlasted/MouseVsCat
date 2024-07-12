@@ -10,6 +10,7 @@ public class Cell : MonoBehaviour
     [SerializeField] bool isParadiseCell;
 
     Pawn _currentPawn;
+    Tweener movementTween;
 
     //Cache 
     List<Cell> _adjacentSameCell = new List<Cell>();
@@ -25,7 +26,9 @@ public class Cell : MonoBehaviour
         else newPawn.tag = "Paradise";
 
         _currentPawn.transform.SetParent(_spawnPawnTransform);
-        _currentPawn.transform.localPosition = Vector3.zero;
+
+        if (movementTween.IsActive()) movementTween.Kill();
+        movementTween = _currentPawn.transform.DOLocalMove(Vector3.zero, .2f).SetEase(Ease.OutCubic);
 
         _currentPawn.BoxCollider.enabled = isParadiseCell;
 
@@ -130,7 +133,7 @@ public class Cell : MonoBehaviour
             _beforeMergePS.Play();
         }
 
-        _currentPawn.transform.DOMove(mergeCell.CurrentPawn.transform.position, .2f).OnComplete(() =>
+        _currentPawn.transform.DOMove(mergeCell._spawnPawnTransform.transform.position, .2f).OnComplete(() =>
         {
             _currentPawn.transform.parent = null;
             _currentPawn.gameObject.SetActive(false);
