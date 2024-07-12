@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Cell : MonoBehaviour
@@ -18,7 +19,7 @@ public class Cell : MonoBehaviour
     public Pawn CurrentPawn { get => _currentPawn; }
     public List<Cell> AdjacentSameCell { get => _adjacentSameCell; }
 
-    public void SetCurrentPawn(Pawn newPawn)
+    public void SetCurrentPawn(Pawn newPawn, bool isDraggedPawn = true)
     {
         _currentPawn = newPawn;
 
@@ -26,10 +27,13 @@ public class Cell : MonoBehaviour
 
         _currentPawn.tag = "Paradise";
 
-        _currentPawn.transform.SetParent(_spawnPawnTransform);
+        if (isDraggedPawn)
+        {
+            _currentPawn.transform.SetParent(_spawnPawnTransform);
 
-        if (movementTween.IsActive()) movementTween.Kill();
-        movementTween = _currentPawn.transform.DOLocalMove(Vector3.zero, .2f).SetEase(Ease.OutCubic);
+            if (movementTween.IsActive()) movementTween.Kill();
+            movementTween = _currentPawn.transform.DOLocalMove(Vector3.zero, .2f).SetEase(Ease.OutCubic);
+        }
 
         _currentPawn.BoxCollider.enabled = isParadiseCell;
 
@@ -137,10 +141,8 @@ public class Cell : MonoBehaviour
         _currentPawn.transform.DOMove(mergeCell._spawnPawnTransform.transform.position, .2f).OnComplete(() =>
         {
             _currentPawn.transform.parent = null;
-
-            PoolManager.Instance.ResetFromPool("Pawn", _currentPawn.gameObject);
-
             _currentPawn.ResetPawn();
+            PoolManager.Instance.ResetFromPool("Pawn", _currentPawn.gameObject);
 
             Pawn newPawn = null;
 
@@ -154,7 +156,7 @@ public class Cell : MonoBehaviour
 
                 newPawn.PawnObject = DataUtils.Instance.GetPawnObjectByType(nextPawnType);
 
-                newPawn.Init();
+                newPawn.Init(true);
             }
 
             ResetCell();
@@ -164,5 +166,28 @@ public class Cell : MonoBehaviour
                 SetCurrentPawn(newPawn);
             }
         });
+    }
+
+    private async void OnMouseUp()
+    {
+        if (_currentPawn == null && BoardGameManager.Instance.CurrentPawn != null)
+        {
+            _currentPawn = BoardGameManager.Instance.CurrentPawn;
+            BoardGameManager.Instance.CurrentPawn = null;
+
+            _currentPawn.transform.SetParent(_spawnPawnTransform);
+
+            _currentPawn.BoxCollider.enabled = false;
+
+            await _currentPawn.PickFeedbacks();
+
+            await _currentPawn.transform.DOLocalMove(Vector3.zero, .2f).SetEase(Ease.OutCubic).AsyncWaitForCompletion();
+
+            await _currentPawn.DropFeedbacks();
+
+            SetCurrentPawn(_currentPawn, false);
+
+            BoardGameManager.Instance.NewRound();
+        }
     }
 }

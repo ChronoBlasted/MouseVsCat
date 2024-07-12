@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class BoardGameManager : MonoSingleton<BoardGameManager>
 {
+    [SerializeField] Pawn _currentPawn;
     [SerializeField] Board _board;
-    [SerializeField] Transform _newPawnSpawn;
+    [SerializeField] Transform _newPawnSpawn, _nextPawnSpawn;
     [SerializeField] Cell _paradiseCell;
     [SerializeField] List<PawnProb> pawnProbs = new List<PawnProb>();
 
+    Pawn _nextPawn;
     int _currentRound;
 
     public Board Board { get => _board; }
     public Transform NewPawnSpawn { get => _newPawnSpawn; }
     public Cell ParadiseCell { get => _paradiseCell; }
+    public Pawn CurrentPawn { get => _currentPawn; set => _currentPawn = value; }
 
     public void Init()
     {
         ResetGame();
+
+        UpdateNextPawn();
 
         NewRound();
     }
@@ -30,6 +35,34 @@ public class BoardGameManager : MonoSingleton<BoardGameManager>
 
     public void NewRound()
     {
+        UpdateCurrentPawn();
+        UpdateNextPawn();
+
+        _currentRound++;
+    }
+
+    void UpdateCurrentPawn()
+    {
+        _currentPawn = _nextPawn;
+
+        _currentPawn.BoxCollider.enabled = true;
+
+        _currentPawn.transform.SetParent(_newPawnSpawn);
+
+        _currentPawn.transform.localPosition = Vector3.zero;
+
+        _currentPawn.Init(true);
+    }
+
+    void UpdateNextPawn()
+    {
+        _nextPawn = SpawnPawn(_nextPawnSpawn);
+
+        _nextPawn.BoxCollider.enabled = false;
+    }
+
+    Pawn SpawnPawn(Transform spawn)
+    {
         float totalAmount = 0f;
 
         foreach (var prob in pawnProbs)
@@ -41,24 +74,26 @@ public class BoardGameManager : MonoSingleton<BoardGameManager>
 
         float cumulativePercentage = 0;
 
+        Pawn currentPawn = null;
+
         for (int i = 0; i < pawnProbs.Count; i++)
         {
             cumulativePercentage += pawnProbs[i].prob;
 
             if (randNum <= cumulativePercentage)
             {
-                Pawn objectToPool = PoolManager.Instance.SpawnFromPool("Pawn", _newPawnSpawn.position, _newPawnSpawn.rotation).GetComponent<Pawn>();
+                currentPawn = PoolManager.Instance.SpawnFromPool("Pawn", spawn.position, spawn.rotation).GetComponent<Pawn>();
 
-                objectToPool.transform.SetParent(_newPawnSpawn);
+                currentPawn.transform.SetParent(spawn);
 
-                objectToPool.PawnObject = DataUtils.Instance.GetPawnObjectByType(pawnProbs[i].type);
+                currentPawn.PawnObject = DataUtils.Instance.GetPawnObjectByType(pawnProbs[i].type);
 
-                objectToPool.Init();
+                currentPawn.Init();
 
-                break;
+                return currentPawn;
             }
         }
 
-        _currentRound++;
+        return currentPawn;
     }
 }

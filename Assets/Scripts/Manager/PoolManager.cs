@@ -72,6 +72,8 @@ public class PoolManager : MonoSingleton<PoolManager>
         {
             objectToReset.SetActive(false);
 
+            objectToReset.tag = "Untagged";
+
             poolDictionary[tag].Enqueue(objectToReset);
         }
         else

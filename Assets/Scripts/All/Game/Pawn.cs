@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Pawn : MonoBehaviour
@@ -12,6 +13,7 @@ public class Pawn : MonoBehaviour
     #region DragAndDrop
     [SerializeField] BoxCollider2D _boxCollider;
     [SerializeField] PawnObject _pawnObject;
+    [SerializeField] AnimationCurve _scaleInitCurve;
 
     private float rotationSpeed = 0.05f;
     private float resetSpeed = 500f;
@@ -29,10 +31,25 @@ public class Pawn : MonoBehaviour
 
     #endregion
 
-    public void Init()
+    public void Init(bool bigScale = false)
     {
+        if (bigScale)
+        {
+            spriteRenderer.DOFade(1, 0f);
+            shadowRenderer.DOFade(1, 0f);
+
+            transform.localScale = Vector3.zero;
+        }
+        else
+        {
+            spriteRenderer.DOFade(.5f, 0f);
+            shadowRenderer.DOFade(.5f, 0f);
+        }
+
         spriteRenderer.sprite = _pawnObject.sprite;
         shadowRenderer.sprite = _pawnObject.sprite;
+
+        if (bigScale) transform.DOScale(Vector3.one, .5f).SetEase(_scaleInitCurve);
     }
 
     Vector3 GetMouseWorldPosition()
@@ -44,7 +61,7 @@ public class Pawn : MonoBehaviour
     {
         if (movementTween.IsActive()) movementTween.Kill();
 
-        PickFeedbacks();
+        _ = PickFeedbacks();
 
         _mousePositionOffset = transform.localPosition - GetMouseWorldPosition();
     }
@@ -82,9 +99,7 @@ public class Pawn : MonoBehaviour
 
     private void OnMouseUp()
     {
-        DropFeedbacks();
-
-        _boxCollider.enabled = false;
+        _ = DropFeedbacks();
 
         var rayOrigin = GetMouseWorldPosition() - Camera.main.transform.position;
         var rayDirection = Camera.main.transform.position;
@@ -106,6 +121,8 @@ public class Pawn : MonoBehaviour
                     if (transform.tag == "Paradise")
                     {
                         BoardGameManager.Instance.ParadiseCell.ResetCell();
+
+                        Debug.Log("paradise escape");
                     }
                     else
                     {
@@ -133,7 +150,7 @@ public class Pawn : MonoBehaviour
         _boxCollider.enabled = true;
     }
 
-    public void PickFeedbacks()
+    public async Task PickFeedbacks()
     {
         Vector3 randomPunchRoate = new Vector3(0, 0, Random.Range(22.5f, 45f));
 
@@ -141,20 +158,29 @@ public class Pawn : MonoBehaviour
 
         transform.DOPunchRotation(randomPunchRoate, .1f, 20);
 
-        spriteRenderer.transform.DOLocalMove(new Vector3(0, .2f, 0), .2f).SetEase(Ease.OutBack);
-
         spriteRenderer.transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), .2f).SetEase(Ease.OutBack);
         shadowRenderer.transform.DOScale(Vector3.one, .2f).SetEase(Ease.OutBack);
+
+        spriteRenderer.sortingOrder = 10;
+        shadowRenderer.sortingOrder = 9;
+
+        await spriteRenderer.transform.DOLocalMove(new Vector3(0, .2f, 0), .2f).SetEase(Ease.OutBack).AsyncWaitForCompletion();
     }
 
-    public void DropFeedbacks()
+    public async Task DropFeedbacks()
     {
-        transform.DORotate(Vector3.zero, .2f);
+        _boxCollider.enabled = false;
 
-        spriteRenderer.transform.DOLocalMove(Vector3.zero, .2f);
+        transform.DORotate(Vector3.zero, .2f);
 
         spriteRenderer.transform.DOScale(Vector3.one, .2f);
         shadowRenderer.transform.DOScale(new Vector3(.8f, .8f, .8f), .2f);
+
+        await spriteRenderer.transform.DOLocalMove(Vector3.zero, .2f).OnComplete(() =>
+        {
+            spriteRenderer.sortingOrder = 6;
+            shadowRenderer.sortingOrder = 5;
+        }).AsyncWaitForCompletion(); ;
     }
 
 }
