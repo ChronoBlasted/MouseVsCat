@@ -170,7 +170,7 @@ public class Cell : MonoBehaviour
 
     private async void OnMouseUp()
     {
-        if (_currentPawn == null && BoardGameManager.Instance.CurrentPawn != null)
+        if (_currentPawn == null && BoardGameManager.Instance.CurrentPawn != null && GameManager.Instance.GameState == GameState.GAME)
         {
             _currentPawn = BoardGameManager.Instance.CurrentPawn;
             BoardGameManager.Instance.CurrentPawn = null;

@@ -2,18 +2,16 @@ using BaseTemplate.Behaviours;
 using DG.Tweening;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum GameState { MENU, GAME, PAUSE, END, WAIT }
+public enum GameState { GAME, MENU, END }
 
 public class GameManager : MonoSingleton<GameManager>
 {
     public event Action<GameState> OnGameStateChanged;
 
     GameState _gameState;
-    Coroutine _launchGameCoroutine;
     public GameState GameState { get => _gameState; }
 
     private void Awake()
@@ -22,23 +20,17 @@ public class GameManager : MonoSingleton<GameManager>
 
         PoolManager.Instance.Init();
 
-        ProfileManager.Instance.Init();
-
         UIManager.Instance.Init();
+
+        ProfileManager.Instance.Init();
 
         BoardGameManager.Instance.Init();
 
-        StartCoroutine(LaunchGame());
-
         CameraManager.Instance.Init();
-    }
-
-    IEnumerator LaunchGame()
-    {
-        yield return new WaitForEndOfFrame();
 
         UpdateGameState(GameState.GAME);
     }
+
 
     private void Update()
     {
@@ -54,20 +46,11 @@ public class GameManager : MonoSingleton<GameManager>
 
         switch (_gameState)
         {
-            case GameState.MENU:
-                HandleMenu();
-                break;
             case GameState.GAME:
                 HandleGame();
                 break;
-            case GameState.PAUSE:
-                HandlePause();
-                break;
             case GameState.END:
                 HandleEnd();
-                break;
-            case GameState.WAIT:
-                HandleWait();
                 break;
             default:
                 break;
@@ -75,31 +58,15 @@ public class GameManager : MonoSingleton<GameManager>
         OnGameStateChanged?.Invoke(_gameState);
     }
 
-    void HandleMenu()
-    {
-    }
-
     void HandleGame()
     {
-        Time.timeScale = 1;
-    }
-
-    void HandlePause()
-    {
-        Time.timeScale = 0;
     }
 
     void HandleEnd()
     {
     }
 
-    void HandleWait()
-    {
-    }
-
-    public void UpdateStateToMenu() => UpdateGameState(GameState.MENU);
     public void UpdateStateToGame() => UpdateGameState(GameState.GAME);
-    public void UpdateStateToPause() => UpdateGameState(GameState.PAUSE);
     public void UpdateStateToEnd() => UpdateGameState(GameState.END);
 
     public void ReloadScene()

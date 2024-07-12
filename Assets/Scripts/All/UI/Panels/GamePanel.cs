@@ -7,11 +7,14 @@ using UnityEngine.UI;
 
 public class GamePanel : Panel
 {
-    [SerializeField] TMP_Text _scoreText;
+    [SerializeField] TMP_Text _scoreTxt, _highscoreTxt;
 
     public override void Init()
     {
         base.Init();
+
+        ProfileManager.Instance.OnScoreUpdate += UpdateScore;
+        ProfileManager.Instance.OnHighScoreUpdate += UpdateHighscore;
     }
 
     public override void OpenPanel()
@@ -26,11 +29,21 @@ public class GamePanel : Panel
 
     public void OpenSettings()
     {
-        UIManager.Instance.OpenPanel(UIManager.Instance.SettingPanel);
+        UIManager.Instance.HandleOpenSettings();
+    }
+
+    public void OpenShop()
+    {
+        UIManager.Instance.HandleOpenShop();
     }
 
     public void UpdateScore(int newScore)
     {
-        _scoreText.text = newScore.ToString();
+        _scoreTxt.text = newScore.ToString();
+    }
+
+    public void UpdateHighscore(int newHighscore)
+    {
+        _highscoreTxt.text = "Highscore : " + newHighscore;
     }
 }

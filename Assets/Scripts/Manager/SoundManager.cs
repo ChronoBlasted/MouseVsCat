@@ -46,44 +46,25 @@ public class SoundManager : MonoSingleton<SoundManager>
     {
         switch (newState)
         {
-            case GameState.MENU:
-                HandleMenu();
-                break;
             case GameState.GAME:
                 HandleGame();
                 break;
-            case GameState.PAUSE:
-                HandlePause();
-                break;
             case GameState.END:
                 HandleEnd();
-                break;
-            case GameState.WAIT:
-                HandleWait();
                 break;
             default:
                 break;
         }
     }
 
-    void HandleMenu()
-    {
-        PlayMusic(_menuMusic);
-    }
     void HandleGame()
     {
         PlayMusic(_gameMusic);
     }
-    void HandlePause()
-    {
-    }
+
     void HandleEnd()
     {
         PlayMusic(_endMusic);
-    }
-    void HandleWait()
-    {
-
     }
 }
 

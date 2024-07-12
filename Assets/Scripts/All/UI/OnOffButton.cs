@@ -8,25 +8,17 @@ namespace Chrono.UI
 {
     public class OnOffButton : CustomButton
     {
-        [SerializeField] Image _BG;
-        [SerializeField] TMP_Text _state;
-
-        [SerializeField] Color32 _onColor = Color.green, _offColor = Color.white;
+        [SerializeField] Image _ico;
+        [SerializeField] Sprite _onSprite, _offSprite;
 
         public void SetOn()
         {
-            _state.text = "ON";
-
-            _BG.color = _onColor;
-            _state.color = _offColor;
+            _ico.sprite = _onSprite;
         }
 
         public void SetOff()
         {
-            _state.text = "OFF";
-
-            _BG.color = _offColor;
-            _state.color = _onColor;
+            _ico.sprite = _offSprite;
         }
     }
 }

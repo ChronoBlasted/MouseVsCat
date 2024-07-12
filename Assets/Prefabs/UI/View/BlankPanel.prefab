@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8914447857824452188, guid: 83e8da632b07c214b9af1f845a0863a5, type: 3}
+      propertyPath: m_Padding.m_Top
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914447857824452188, guid: 83e8da632b07c214b9af1f845a0863a5, type: 3}
+      propertyPath: m_Padding.m_Bottom
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8914447857824452189, guid: 83e8da632b07c214b9af1f845a0863a5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -131,6 +139,22 @@ PrefabInstance:
     - target: {fileID: 8914447858544656961, guid: 83e8da632b07c214b9af1f845a0863a5, type: 3}
       propertyPath: m_Layer
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914447859002360333, guid: 83e8da632b07c214b9af1f845a0863a5, type: 3}
+      propertyPath: m_Padding.m_Top
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914447859002360333, guid: 83e8da632b07c214b9af1f845a0863a5, type: 3}
+      propertyPath: m_Padding.m_Left
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914447859002360333, guid: 83e8da632b07c214b9af1f845a0863a5, type: 3}
+      propertyPath: m_Padding.m_Right
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914447859002360333, guid: 83e8da632b07c214b9af1f845a0863a5, type: 3}
+      propertyPath: m_Padding.m_Bottom
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8914447859002360371, guid: 83e8da632b07c214b9af1f845a0863a5, type: 3}
       propertyPath: m_Layer

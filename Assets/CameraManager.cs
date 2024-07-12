@@ -70,17 +70,11 @@ public class CameraManager : MonoSingleton<CameraManager>
     {
         switch (newState)
         {
-            case GameState.MENU:
-                SwitchCamera("MenuCamera");
-                break;
             case GameState.GAME:
                 SwitchCamera("GameCamera");
                 break;
-            case GameState.PAUSE:
-                break;
             case GameState.END:
-                break;
-            case GameState.WAIT:
+                SwitchCamera("MenuCamera");
                 break;
             default:
                 break;

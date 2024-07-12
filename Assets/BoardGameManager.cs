@@ -38,6 +38,8 @@ public class BoardGameManager : MonoSingleton<BoardGameManager>
         UpdateCurrentPawn();
         UpdateNextPawn();
 
+        if (CheckIfNoMoreMove()) GameManager.Instance.UpdateStateToEnd();
+
         _currentRound++;
     }
 
@@ -95,5 +97,15 @@ public class BoardGameManager : MonoSingleton<BoardGameManager>
         }
 
         return currentPawn;
+    }
+
+    public bool CheckIfNoMoreMove()
+    {
+        foreach (Cell cell in _board.AllCell)
+        {
+            if (cell.CurrentPawn == null) return false;
+        }
+
+        return true;
     }
 }

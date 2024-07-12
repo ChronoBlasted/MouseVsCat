@@ -1,29 +1,23 @@
 using BaseTemplate.Behaviours;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
 public class UIManager : MonoSingleton<UIManager>
 {
-    [SerializeField] MenuPanel _menuPanel;
-    [SerializeField] SettingPanel _settingPanel;
-
     [SerializeField] GamePanel _gamePanel;
-    [SerializeField] PausePanel _pausePanel;
-
     [SerializeField] EndGamePanel _endGamePanel;
 
+    [SerializeField] SettingPopup _settingPanel;
+    [SerializeField] ShopPopup _shopPanel;
     [SerializeField] BlankPanel _blankPanel;
 
     Panel _currentPanel;
+    Popup _currentPopup;
 
-    public MenuPanel MenuPanel { get => _menuPanel; }
     public GamePanel GamePanel { get => _gamePanel; }
-    public SettingPanel SettingPanel { get => _settingPanel; }
-    public PausePanel PausePanel { get => _pausePanel;}
-    public EndGamePanel EndGamePanel { get => _endGamePanel;  }
-    public BlankPanel BlankPanel { get => _blankPanel;  }
+    public EndGamePanel EndGamePanel { get => _endGamePanel; }
+    public BlankPanel BlankPanel { get => _blankPanel; }
+    public Popup CurrentPopup { get => _currentPopup; set => _currentPopup = value; }
 
     public void Init()
     {
@@ -34,24 +28,18 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void InitPanel()
     {
-        _menuPanel.Init();
         _gamePanel.Init();
         _endGamePanel.Init();
-        _pausePanel.Init();
+        _blankPanel.Init();
+
         _settingPanel.Init();
+        _shopPanel.Init();
     }
 
-    public void OpenPanel(Panel newPanel, bool _isAddingCanvas = false)
+    public void OpenPanel(Panel newPanel)
     {
         if (newPanel == _currentPanel) return;
-
-        if (_currentPanel != null)
-        {
-            if (_isAddingCanvas == false)
-            {
-                ClosePanel(_currentPanel);
-            }
-        }
+        if (_currentPanel != null) ClosePanel(_currentPanel);
 
         _currentPanel = newPanel;
 
@@ -64,26 +52,28 @@ public class UIManager : MonoSingleton<UIManager>
         newPanel.ClosePanel();
     }
 
+    public void AddPopup(Popup newPopup)
+    {
+        if (newPopup == _currentPopup) return;
+
+        _currentPopup = newPopup;
+
+        _currentPopup.gameObject.SetActive(true);
+        _currentPopup.OpenPopup();
+    }
+
+
     #region GameState
 
     void HandleStateChange(GameState newState)
     {
         switch (newState)
         {
-            case GameState.MENU:
-                HandleMenu();
-                break;
             case GameState.GAME:
                 HandleGame();
                 break;
-            case GameState.PAUSE:
-                HandlePause();
-                break;
             case GameState.END:
                 HandleEnd();
-                break;
-            case GameState.WAIT:
-                HandleWait();
                 break;
             default:
                 break;
@@ -91,33 +81,23 @@ public class UIManager : MonoSingleton<UIManager>
 
     }
 
-    void HandleMenu()
-    {
-        OpenPanel(_menuPanel);
-    }
     void HandleGame()
     {
         OpenPanel(_gamePanel);
-    }
-    void HandlePause()
-    {
-        OpenPanel(_pausePanel, true);
     }
     void HandleEnd()
     {
         OpenPanel(_endGamePanel);
     }
-    void HandleWait()
-    {
-    }
-    public void HandleRevive()
-    {
-        OpenPanel(_gamePanel);
-    }
 
     public void HandleOpenSettings()
     {
-        OpenPanel(_settingPanel, true);
+        AddPopup(_settingPanel);
+    }
+
+    public void HandleOpenShop()
+    {
+        AddPopup(_shopPanel);
     }
 
     public void HandleOpenBlank()

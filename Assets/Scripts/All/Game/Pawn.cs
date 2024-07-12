@@ -1,4 +1,5 @@
 using DG.Tweening;
+using DG.Tweening.Core.Easing;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ public class Pawn : MonoBehaviour
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] SpriteRenderer shadowRenderer;
 
+    GameManager gameManager;
 
     #region DragAndDrop
     [SerializeField] BoxCollider2D _boxCollider;
@@ -30,6 +32,11 @@ public class Pawn : MonoBehaviour
     public PawnObject PawnObject { get => _pawnObject; set => _pawnObject = value; }
 
     #endregion
+
+    private void Start()
+    {
+        gameManager = GameManager.Instance;
+    }
 
     public void Init(bool bigScale = false)
     {
@@ -59,6 +66,8 @@ public class Pawn : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (gameManager.GameState != GameState.GAME) return;
+
         if (movementTween.IsActive()) movementTween.Kill();
 
         _ = PickFeedbacks();
@@ -68,6 +77,8 @@ public class Pawn : MonoBehaviour
 
     private void OnMouseDrag()
     {
+        if (gameManager.GameState != GameState.GAME) return;
+
         transform.localPosition = GetMouseWorldPosition() + _mousePositionOffset;
 
         Vector3 currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -99,6 +110,8 @@ public class Pawn : MonoBehaviour
 
     private void OnMouseUp()
     {
+        if (gameManager.GameState != GameState.GAME) return;
+
         _ = DropFeedbacks();
 
         var rayOrigin = GetMouseWorldPosition() - Camera.main.transform.position;
@@ -121,8 +134,6 @@ public class Pawn : MonoBehaviour
                     if (transform.tag == "Paradise")
                     {
                         BoardGameManager.Instance.ParadiseCell.ResetCell();
-
-                        Debug.Log("paradise escape");
                     }
                     else
                     {

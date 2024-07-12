@@ -5,16 +5,18 @@ using UnityEngine;
 
 public class EndGamePanel : Panel
 {
+    [SerializeField] TMP_Text _scoreTxt, _highScoreTxt;
     public override void Init()
     {
         base.Init();
+
+        ProfileManager.Instance.OnScoreUpdate += UpdateScore;
+        ProfileManager.Instance.OnHighScoreUpdate += UpdateHighScore;
     }
 
     public override void OpenPanel()
     {
         base.OpenPanel();
-
-       
     }
 
     public override void ClosePanel()
@@ -22,13 +24,18 @@ public class EndGamePanel : Panel
         base.ClosePanel();
     }
 
-    public void HandleHomeButton()
+    public void HandleReplayButton()
     {
-
+        GameManager.Instance.ReloadScene();
     }
 
-    public void HandleReviveButton()
+    void UpdateScore(int score)
     {
+        _scoreTxt.text = "Score : " + score;
+    }
 
+    void UpdateHighScore(int highScore)
+    {
+        _highScoreTxt.text = "Highscore : " + highScore;
     }
 }

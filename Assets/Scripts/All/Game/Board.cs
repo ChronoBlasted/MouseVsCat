@@ -6,7 +6,7 @@ public class Board : MonoBehaviour
 {
     [SerializeField] List<Cell> allCell;
 
-
+    public List<Cell> AllCell { get => allCell; }
 
     public void ResetBoard()
     {
