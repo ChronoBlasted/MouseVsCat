@@ -2,6 +2,7 @@ using BaseTemplate.Behaviours;
 using DG.Tweening;
 using System;
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,7 +15,7 @@ public class GameManager : MonoSingleton<GameManager>
     GameState _gameState;
     public GameState GameState { get => _gameState; }
 
-    private void Awake()
+    private async void Awake()
     {
         Time.timeScale = 1;
 
@@ -25,6 +26,8 @@ public class GameManager : MonoSingleton<GameManager>
         ProfileManager.Instance.Init();
 
         BoardGameManager.Instance.Init();
+
+        await Task.Delay(1);
 
         CameraManager.Instance.Init();
 

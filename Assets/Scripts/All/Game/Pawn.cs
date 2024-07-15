@@ -131,6 +131,8 @@ public class Pawn : MonoBehaviour
                 }
                 else
                 {
+                    cell.SetCurrentPawn(this);
+
                     if (transform.tag == "Paradise")
                     {
                         BoardGameManager.Instance.ParadiseCell.ResetCell();
@@ -139,8 +141,6 @@ public class Pawn : MonoBehaviour
                     {
                         BoardGameManager.Instance.NewRound();
                     }
-
-                    cell.SetCurrentPawn(this);
                 }
             }
             else

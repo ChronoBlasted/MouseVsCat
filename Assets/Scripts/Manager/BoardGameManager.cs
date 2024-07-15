@@ -7,7 +7,7 @@ public class BoardGameManager : MonoSingleton<BoardGameManager>
     [SerializeField] Pawn _currentPawn;
     [SerializeField] Board _board;
     [SerializeField] Transform _newPawnSpawn, _nextPawnSpawn;
-    [SerializeField] Cell _paradiseCell;
+    [SerializeField] CellParadise _paradiseCell;
     [SerializeField] List<PawnProb> pawnProbs = new List<PawnProb>();
 
     Pawn _nextPawn;
@@ -101,7 +101,7 @@ public class BoardGameManager : MonoSingleton<BoardGameManager>
 
     public bool CheckIfNoMoreMove()
     {
-        foreach (Cell cell in _board.AllCell)
+        foreach (CellBoard cell in _board.AllCell)
         {
             if (cell.CurrentPawn == null) return false;
         }

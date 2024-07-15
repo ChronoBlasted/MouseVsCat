@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Board : MonoBehaviour
 {
-    [SerializeField] List<Cell> allCell;
+    [SerializeField] List<CellBoard> allCell;
 
-    public List<Cell> AllCell { get => allCell; }
+    public List<CellBoard> AllCell { get => allCell; }
 
     public void ResetBoard()
     {

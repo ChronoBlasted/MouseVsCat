@@ -19267,8 +19267,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4955459822366881831}
-  - component: {fileID: 6937989561220211291}
   - component: {fileID: 5495338844261477925}
+  - component: {fileID: 522809448985067602}
   m_Layer: 0
   m_Name: Cell
   m_TagString: DropArea
@@ -19294,26 +19294,6 @@ Transform:
   - {fileID: 4585829877641530225}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6937989561220211291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6173200147048717313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5a53a01cae7b054eb3f30f716a8c40f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TopCell: {fileID: 0}
-  RightCell: {fileID: 0}
-  BottomCell: {fileID: 0}
-  LeftCell: {fileID: 0}
-  _spawnPawnTransform: {fileID: 8055288336671051810}
-  _beforeMergePS: {fileID: 5266291225019794604}
-  _afterMergePS: {fileID: 5290047193861670918}
-  isParadiseCell: 0
 --- !u!61 &5495338844261477925
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19359,6 +19339,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &522809448985067602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6173200147048717313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 617445dac12457b43af256e6db793366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnPawnTransform: {fileID: 8055288336671051810}
+  _beforeMergePS: {fileID: 5266291225019794604}
+  _afterMergePS: {fileID: 5290047193861670918}
+  TopCell: {fileID: 0}
+  RightCell: {fileID: 0}
+  BottomCell: {fileID: 0}
+  LeftCell: {fileID: 0}
 --- !u!1 &8777278170905577108
 GameObject:
   m_ObjectHideFlags: 0

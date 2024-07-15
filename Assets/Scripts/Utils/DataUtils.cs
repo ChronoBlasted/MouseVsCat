@@ -6,7 +6,7 @@ public class DataUtils : MonoSingleton<DataUtils>
 {
     [SerializeField] List<PawnObject> _pawnObjects;
 
-    public PawnObject GetPawnObjectByType(PawnType pawnType)
+    public PawnObject GetPawnObjectByType(PawnTier pawnType)
     {
         foreach (PawnObject obj in _pawnObjects)
         {
@@ -17,12 +17,12 @@ public class DataUtils : MonoSingleton<DataUtils>
     }
 
 
-    public PawnType GetNextPawnTypeByPawnType(PawnType type)
+    public PawnTier GetNextPawnTypeByPawnType(PawnTier type)
     {
         int currentEnumInt = (int)type;
         int nextEnumInt = currentEnumInt + 1;
 
-        PawnType nextEnumValue = (PawnType)nextEnumInt;
+        PawnTier nextEnumValue = (PawnTier)nextEnumInt;
 
         return nextEnumValue;
     }

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63e31b0603a87a345ae74138ac0ee565, type: 3}
-  m_Name: Pear
+  m_Name: Tier5
   m_EditorClassIdentifier: 
-  type: 7
-  sprite: {fileID: 395468091, guid: bf89d64babc18494a91ddefa0ef8bf5c, type: 3}
-  ScoreValue: 128
+  type: 5
+  sprite: {fileID: 859772771, guid: bf89d64babc18494a91ddefa0ef8bf5c, type: 3}
+  ScoreValue: 16
