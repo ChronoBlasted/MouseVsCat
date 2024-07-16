@@ -13,8 +13,8 @@ public class ProfileManager : MonoSingleton<ProfileManager>
     public int Coins { get => _coins; }
     public int HardCurrency { get => _hardCurrency; }
 
-    public event Action OnCoinUpdate;
-    public event Action OnHardCurrencyUpdate;
+    public event Action<int> OnCoinUpdate;
+    public event Action<int> OnHardCurrencyUpdate;
     public event Action<int> OnScoreUpdate;
     public event Action<int> OnHighScoreUpdate;
 
@@ -31,9 +31,8 @@ public class ProfileManager : MonoSingleton<ProfileManager>
     public void ResetProfile()
     {
         _score = 0;
-        PlayerPrefs.DeleteKey("highScore");
-        PlayerPrefs.DeleteKey("coins");
         UpdateScore(0);
+        PlayerPrefs.DeleteKey("coins");
     }
 
     public void UpdateScore(int amountToAdd)
@@ -62,7 +61,7 @@ public class ProfileManager : MonoSingleton<ProfileManager>
 
         _coins += amountToAdd;
 
-        OnCoinUpdate?.Invoke();
+        OnCoinUpdate?.Invoke(_coins);
 
         SaveHandler.SaveValue("coins", _coins);
 
@@ -78,10 +77,15 @@ public class ProfileManager : MonoSingleton<ProfileManager>
 
         _hardCurrency += amountToAdd;
 
-        OnHardCurrencyUpdate?.Invoke();
+        OnHardCurrencyUpdate?.Invoke(_hardCurrency);
 
         SaveHandler.SaveValue("hardCurrency", _hardCurrency);
 
         return true;
+    }
+
+    private void OnDestroy()
+    {
+        ResetProfile();
     }
 }

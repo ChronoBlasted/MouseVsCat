@@ -14479,13 +14479,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPawnTransform: {fileID: 8055288336671051810}
-  _beforeMergePS: {fileID: 5266379030554805788}
-  _afterMergePS: {fileID: 5290047193861670918}
   _spriteRenderer: {fileID: 5118181646965016041}
   TopCell: {fileID: 0}
   RightCell: {fileID: 0}
   BottomCell: {fileID: 0}
   LeftCell: {fileID: 0}
+  _beforeMergePS: {fileID: 5266379030554805788}
+  _afterMergePS: {fileID: 5290047193861670918}
+  _floatingText: {fileID: 3553841013982443542, guid: e389f383628c6bc4b8b932bc858a2721, type: 3}
 --- !u!1 &8777278170905577108
 GameObject:
   m_ObjectHideFlags: 0

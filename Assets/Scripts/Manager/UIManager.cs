@@ -10,6 +10,8 @@ public class UIManager : MonoSingleton<UIManager>
     [SerializeField] ShopPopup _shopPanel;
     [SerializeField] BlankPanel _blankPanel;
 
+    public Canvas MainCanvas;
+
     Panel _currentPanel;
     Popup _currentPopup;
 

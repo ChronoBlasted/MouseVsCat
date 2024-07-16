@@ -12,6 +12,9 @@ public class EndGamePanel : Panel
 
         ProfileManager.Instance.OnScoreUpdate += UpdateScore;
         ProfileManager.Instance.OnHighScoreUpdate += UpdateHighScore;
+
+        UpdateScore(ProfileManager.Instance.Score);
+        UpdateHighScore(ProfileManager.Instance.HighScore);
     }
 
     public override void OpenPanel()

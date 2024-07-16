@@ -7,6 +7,7 @@ public class CellBoard : Cell
 {
     public CellBoard TopCell, RightCell, BottomCell, LeftCell;
     [SerializeField] ParticleSystem _beforeMergePS, _afterMergePS;
+    [SerializeField] FloatingText _floatingText;
 
 
     //Cache 
@@ -115,9 +116,22 @@ public class CellBoard : Cell
             adjacentPawn.Merge(mergeCell);
         }
 
+        BoardGameManager.Instance.mergeStreak++;
+
+        ProfileManager.Instance.AddCoins(BoardGameManager.Instance.mergeStreak);
+
+        Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
+
+        var floatText = Instantiate(_floatingText, screenPosition, Quaternion.identity, UIManager.Instance.MainCanvas.transform);
+
+        floatText.Init(BoardGameManager.Instance.mergeStreak + "<sprite=0>", Color.white);
+        // Do Floating text
+
         if (mergeCell == this)
         {
             _beforeMergePS.Play();
+
+            BoardGameManager.Instance.mergeStreak = 0;
         }
 
         _currentPawn.transform.DOScale(Vector3.zero, .1f).SetDelay(.1f).SetEase(Ease.InBack);

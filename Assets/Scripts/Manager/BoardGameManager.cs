@@ -10,6 +10,8 @@ public class BoardGameManager : MonoSingleton<BoardGameManager>
     [SerializeField] CellParadise _paradiseCell;
     [SerializeField] List<PawnProb> pawnProbs = new List<PawnProb>();
 
+    public int mergeStreak = 0;
+
     Pawn _nextPawn;
     int _currentRound;
 
@@ -39,6 +41,8 @@ public class BoardGameManager : MonoSingleton<BoardGameManager>
         UpdateNextPawn();
 
         if (CheckIfNoMoreMove()) GameManager.Instance.UpdateStateToEnd();
+
+        if (_currentRound != 0) ProfileManager.Instance.AddCoins(1);
 
         _currentRound++;
     }
