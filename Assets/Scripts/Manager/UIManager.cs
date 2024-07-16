@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class UIManager : MonoSingleton<UIManager>
 {
-    [SerializeField] GamePanel _gamePanel;
     [SerializeField] EndGamePanel _endGamePanel;
 
     [SerializeField] SettingPopup _settingPanel;
@@ -14,7 +13,6 @@ public class UIManager : MonoSingleton<UIManager>
     Panel _currentPanel;
     Popup _currentPopup;
 
-    public GamePanel GamePanel { get => _gamePanel; }
     public EndGamePanel EndGamePanel { get => _endGamePanel; }
     public BlankPanel BlankPanel { get => _blankPanel; }
     public Popup CurrentPopup { get => _currentPopup; set => _currentPopup = value; }
@@ -28,7 +26,6 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void InitPanel()
     {
-        _gamePanel.Init();
         _endGamePanel.Init();
         _blankPanel.Init();
 
@@ -83,7 +80,6 @@ public class UIManager : MonoSingleton<UIManager>
 
     void HandleGame()
     {
-        OpenPanel(_gamePanel);
     }
     void HandleEnd()
     {

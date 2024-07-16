@@ -1,40 +1,19 @@
-using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class GamePanel : Panel
+public class ScoreWorld : MonoBehaviour
 {
     [SerializeField] TMP_Text _scoreTxt, _highscoreTxt;
 
-    public override void Init()
+    void Start()
     {
-        base.Init();
-
         ProfileManager.Instance.OnScoreUpdate += UpdateScore;
         ProfileManager.Instance.OnHighScoreUpdate += UpdateHighscore;
-    }
 
-    public override void OpenPanel()
-    {
-        base.OpenPanel();
-    }
-
-    public override void ClosePanel()
-    {
-        base.ClosePanel();
-    }
-
-    public void OpenSettings()
-    {
-        UIManager.Instance.HandleOpenSettings();
-    }
-
-    public void OpenShop()
-    {
-        UIManager.Instance.HandleOpenShop();
+        UpdateScore(ProfileManager.Instance.Score);
+        UpdateHighscore(ProfileManager.Instance.HighScore);
     }
 
     public void UpdateScore(int newScore)
@@ -46,4 +25,5 @@ public class GamePanel : Panel
     {
         _highscoreTxt.text = "Highscore : " + newHighscore;
     }
+
 }

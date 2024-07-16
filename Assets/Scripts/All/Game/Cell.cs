@@ -11,6 +11,7 @@ public class Cell : MonoBehaviour
     protected Tweener movementTween;
     protected Pawn _currentPawn;
     public Pawn CurrentPawn { get => _currentPawn; }
+    public Transform SpawnPawnTransform { get => _spawnPawnTransform; }
 
     private void Start()
     {
@@ -21,7 +22,6 @@ public class Cell : MonoBehaviour
     public virtual void SetCurrentPawn(Pawn newPawn, bool isDraggedPawn = true)
     {
         _currentPawn = newPawn;
-
 
         if (isDraggedPawn)
         {

@@ -11,6 +11,7 @@ public class GoogleManager : MonoSingleton<GoogleManager>
         // Post score 12345 to leaderboard ID "Cfji293fjsie_QA")
         Social.ReportScore(score, "Cfji293fjsie_QA", (bool success) =>
         {
+            Debug.Log(success);
             // Handle success or failure
         });
     }
@@ -19,8 +20,6 @@ public class GoogleManager : MonoSingleton<GoogleManager>
     {
         Social.ShowLeaderboardUI();
     }
-
-
 }
 
 

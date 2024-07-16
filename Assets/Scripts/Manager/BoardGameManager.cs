@@ -6,7 +6,7 @@ public class BoardGameManager : MonoSingleton<BoardGameManager>
 {
     [SerializeField] Pawn _currentPawn;
     [SerializeField] Board _board;
-    [SerializeField] Transform _newPawnSpawn, _nextPawnSpawn;
+    [SerializeField] Cell _newPawnCell, _nextPawnCell;
     [SerializeField] CellParadise _paradiseCell;
     [SerializeField] List<PawnProb> pawnProbs = new List<PawnProb>();
 
@@ -14,7 +14,7 @@ public class BoardGameManager : MonoSingleton<BoardGameManager>
     int _currentRound;
 
     public Board Board { get => _board; }
-    public Transform NewPawnSpawn { get => _newPawnSpawn; }
+    public Cell NewPawnSpawn { get => _newPawnCell; }
     public Cell ParadiseCell { get => _paradiseCell; }
     public Pawn CurrentPawn { get => _currentPawn; set => _currentPawn = value; }
 
@@ -49,7 +49,7 @@ public class BoardGameManager : MonoSingleton<BoardGameManager>
 
         _currentPawn.BoxCollider.enabled = true;
 
-        _currentPawn.transform.SetParent(_newPawnSpawn);
+        _newPawnCell.SetCurrentPawn(_currentPawn);
 
         _currentPawn.transform.localPosition = Vector3.zero;
 
@@ -58,7 +58,9 @@ public class BoardGameManager : MonoSingleton<BoardGameManager>
 
     void UpdateNextPawn()
     {
-        _nextPawn = SpawnPawn(_nextPawnSpawn);
+        _nextPawn = SpawnPawn(_nextPawnCell.SpawnPawnTransform);
+
+        _nextPawnCell.SetCurrentPawn(_nextPawn);
 
         _nextPawn.BoxCollider.enabled = false;
     }
