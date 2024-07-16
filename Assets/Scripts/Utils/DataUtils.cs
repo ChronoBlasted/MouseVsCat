@@ -1,4 +1,5 @@
 using BaseTemplate.Behaviours;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,8 +21,15 @@ public class DataUtils : MonoSingleton<DataUtils>
 
     public PawnTier GetNextPawnTypeByPawnType(PawnTier type)
     {
+        PawnTier[] values = (PawnTier[])Enum.GetValues(typeof(PawnTier));
+
         int currentEnumInt = (int)type;
         int nextEnumInt = currentEnumInt + 1;
+
+        if (nextEnumInt >= values.Length)
+        {
+            nextEnumInt = 1;
+        }
 
         PawnTier nextEnumValue = (PawnTier)nextEnumInt;
 

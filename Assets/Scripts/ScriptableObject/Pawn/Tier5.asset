@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Tier5
   m_EditorClassIdentifier: 
   type: 5
-  sprite: {fileID: 859772771, guid: bf89d64babc18494a91ddefa0ef8bf5c, type: 3}
   ScoreValue: 16
+  Cost: 40

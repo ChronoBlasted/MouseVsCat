@@ -134,12 +134,18 @@ public class CellBoard : Cell
             BoardGameManager.Instance.mergeStreak = 0;
         }
 
-        _currentPawn.transform.DOScale(Vector3.zero, .1f).SetDelay(.1f).SetEase(Ease.InBack);
-        _currentPawn.transform.DOMove(mergeCell._spawnPawnTransform.transform.position, .2f).OnComplete(() =>
+        var currentPawn = _currentPawn;
+
+        ResetCell();
+
+        currentPawn.transform.DOScale(Vector3.zero, .1f).SetDelay(.1f).SetEase(Ease.InBack);
+        currentPawn.transform.DOMove(mergeCell._spawnPawnTransform.transform.position, .2f).OnComplete(() =>
         {
-            _currentPawn.transform.parent = null;
-            _currentPawn.ResetPawn();
-            PoolManager.Instance.ResetFromPool("Pawn", _currentPawn.gameObject);
+            currentPawn.transform.parent = null;
+
+            currentPawn.ResetPawn();
+
+            PoolManager.Instance.ResetFromPool("Pawn", currentPawn.gameObject);
 
             Pawn newPawn = null;
 
@@ -149,14 +155,12 @@ public class CellBoard : Cell
 
                 newPawn = PoolManager.Instance.SpawnFromPool("Pawn", transform.position, transform.rotation).GetComponent<Pawn>();
 
-                PawnTier nextPawnType = DataUtils.Instance.GetNextPawnTypeByPawnType(_currentPawn.PawnObject.type);
+                PawnTier nextPawnType = DataUtils.Instance.GetNextPawnTypeByPawnType(currentPawn.PawnObject.type);
 
                 newPawn.PawnObject = DataUtils.Instance.GetPawnObjectByType(nextPawnType);
 
                 newPawn.Init(true);
             }
-
-            ResetCell();
 
             if (mergeCell == this)
             {

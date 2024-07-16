@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Tier8
   m_EditorClassIdentifier: 
   type: 8
-  sprite: {fileID: -1559880934, guid: 97014d890251b524ab2536b61d700f0b, type: 3}
   ScoreValue: 128
+  Cost: 120

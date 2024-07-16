@@ -18,6 +18,7 @@ public class UIManager : MonoSingleton<UIManager>
     public EndGamePanel EndGamePanel { get => _endGamePanel; }
     public BlankPanel BlankPanel { get => _blankPanel; }
     public Popup CurrentPopup { get => _currentPopup; set => _currentPopup = value; }
+    public ShopPopup ShopPanel { get => _shopPanel; }
 
     public void Init()
     {

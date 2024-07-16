@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class ShopPopup : Popup
 {
+    [SerializeField] Navbar _navbar;
     public override void Init()
     {
         base.Init();
+
+        _navbar.Init();
     }
 
     public override void OpenPopup()

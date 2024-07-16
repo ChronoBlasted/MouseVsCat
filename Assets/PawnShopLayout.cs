@@ -32,7 +32,16 @@ public class PawnShopLayout : MonoBehaviour
     {
         if (ProfileManager.Instance.AddCoins(-cost))
         {
+            UIManager.Instance.ShopPanel.ClosePopup();
 
+            BoardGameManager.Instance.CurrentPawn.PawnObject = DataUtils.Instance.GetPawnObjectByType(_pawnTier);
+
+            BoardGameManager.Instance.CurrentPawn.Init(true);
+        }
+        else
+        {
+            Debug.Log("TODO : Faire feedbacks ERREUR");
+            
         }
     }
 }

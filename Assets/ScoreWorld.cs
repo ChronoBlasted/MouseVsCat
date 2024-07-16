@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -18,12 +19,24 @@ public class ScoreWorld : MonoBehaviour
 
     public void UpdateScore(int newScore)
     {
-        _scoreTxt.text = newScore.ToString();
+        var lastAmount = int.Parse(_scoreTxt.text);
+
+        DOVirtual.Int(lastAmount, newScore, 1f, x =>
+        {
+            _scoreTxt.text = x.ToString();
+        });
     }
 
     public void UpdateHighscore(int newHighscore)
     {
-        _highscoreTxt.text = "Highscore : " + newHighscore;
+        var split = _highscoreTxt.text.Split(" ");
+
+        var lastAmount = int.Parse(split[2]);
+
+        DOVirtual.Int(lastAmount, newHighscore, 1f, x =>
+        {
+            _highscoreTxt.text = "Highscore : " + x;
+        });
     }
 
 }
