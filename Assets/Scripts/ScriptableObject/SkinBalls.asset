@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SkinBalls
   m_EditorClassIdentifier: 
   SkinType: 1
+  cost: 300
   background: {fileID: 21300000, guid: c1e44d41143e10644bfa597bceafae9a, type: 3}
   cell: {fileID: 21300000, guid: 27333187f8746ba4dbff327fa52cd517, type: 3}
   tier1: {fileID: 21300000, guid: 105dda96e8e4a9f42ba55a8f21175e6c, type: 3}

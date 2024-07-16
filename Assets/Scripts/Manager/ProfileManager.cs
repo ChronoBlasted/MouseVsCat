@@ -6,13 +6,15 @@ using UnityEngine;
 
 public class ProfileManager : MonoSingleton<ProfileManager>
 {
-    [SerializeField] int _score, _highScore, _coins;
+    [SerializeField] int _score, _highScore, _coins, _hardCurrency;
 
     public int Score { get => _score; }
     public int HighScore { get => _highScore; }
     public int Coins { get => _coins; }
+    public int HardCurrency { get => _hardCurrency; }
 
     public event Action OnCoinUpdate;
+    public event Action OnHardCurrencyUpdate;
     public event Action<int> OnScoreUpdate;
     public event Action<int> OnHighScoreUpdate;
 
@@ -50,12 +52,31 @@ public class ProfileManager : MonoSingleton<ProfileManager>
         OnScoreUpdate?.Invoke(_score);
     }
 
-    public void AddCoins(int amountToAdd)
+    public bool AddCoins(int amountToAdd)
     {
+        if (_coins + amountToAdd < 0)
+        {
+            return false;
+        }
+
         _coins += amountToAdd;
 
-        if (_coins < 0) _coins = 0;
-
         OnCoinUpdate?.Invoke();
+
+        return true;
+    }
+
+    public bool AddHardCurrency(int amountToAdd)
+    {
+        if (_hardCurrency + amountToAdd < 0)
+        {
+            return false;
+        }
+
+        _hardCurrency += amountToAdd;
+
+        OnHardCurrencyUpdate?.Invoke();
+
+        return true;
     }
 }

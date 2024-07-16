@@ -6,6 +6,7 @@ using UnityEngine;
 public class SkinData : ScriptableObject
 {
     public SkinType SkinType;
+    public int cost;
 
     public Sprite background;
     public Sprite cell;

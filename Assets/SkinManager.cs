@@ -16,6 +16,8 @@ public class SkinManager : MonoSingleton<SkinManager>
 
     public void Init()
     {
+        SaveHandler.SaveValue(SkinType.FRUIT.ToString(), "owned");
+
         currentSkin = (SkinType)SaveHandler.LoadValue("currentSkin", 0);
 
         ChangeSkin(currentSkin);
@@ -30,19 +32,6 @@ public class SkinManager : MonoSingleton<SkinManager>
         SaveHandler.SaveValue("currentSkin", (int)currentSkin);
 
         OnSkinChange?.Invoke(currentSkin);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.O))
-        {
-            ChangeSkin(SkinType.BALL);
-        }
-
-        if (Input.GetKey(KeyCode.F))
-        {
-            ChangeSkin(SkinType.FRUIT);
-        }
     }
 }
 
