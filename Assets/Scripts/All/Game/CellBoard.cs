@@ -6,6 +6,8 @@ using UnityEngine;
 public class CellBoard : Cell
 {
     public CellBoard TopCell, RightCell, BottomCell, LeftCell;
+    [SerializeField] ParticleSystem _beforeMergePS, _afterMergePS;
+
 
     //Cache 
     List<CellBoard> _adjacentSameCell = new List<CellBoard>();
@@ -15,6 +17,8 @@ public class CellBoard : Cell
     public override void SetCurrentPawn(Pawn newPawn, bool isDraggedPawn = true)
     {
         base.SetCurrentPawn(newPawn, isDraggedPawn);
+
+        ProfileManager.Instance.UpdateScore(_currentPawn.PawnObject.ScoreValue);
 
         _currentPawn.BoxCollider.enabled = false;
 
@@ -116,6 +120,7 @@ public class CellBoard : Cell
             _beforeMergePS.Play();
         }
 
+        _currentPawn.transform.DOScale(Vector3.zero, .1f).SetDelay(.1f).SetEase(Ease.InBack);
         _currentPawn.transform.DOMove(mergeCell._spawnPawnTransform.transform.position, .2f).OnComplete(() =>
         {
             _currentPawn.transform.parent = null;

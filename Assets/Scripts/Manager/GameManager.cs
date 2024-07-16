@@ -21,9 +21,11 @@ public class GameManager : MonoSingleton<GameManager>
 
         PoolManager.Instance.Init();
 
-        UIManager.Instance.Init();
+        SkinManager.Instance.Init();
 
         ProfileManager.Instance.Init();
+
+        UIManager.Instance.Init();
 
         BoardGameManager.Instance.Init();
 

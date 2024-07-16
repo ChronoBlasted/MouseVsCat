@@ -6,18 +6,22 @@ using UnityEngine;
 public class Cell : MonoBehaviour
 {
     [SerializeField] protected Transform _spawnPawnTransform;
-    [SerializeField] protected ParticleSystem _beforeMergePS, _afterMergePS;
+    [SerializeField] SpriteRenderer _spriteRenderer;
 
     protected Tweener movementTween;
     protected Pawn _currentPawn;
     public Pawn CurrentPawn { get => _currentPawn; }
+
+    private void Start()
+    {
+        SkinManager.Instance.OnSkinChange += UpdateSkin;
+    }
 
 
     public virtual void SetCurrentPawn(Pawn newPawn, bool isDraggedPawn = true)
     {
         _currentPawn = newPawn;
 
-        if (_currentPawn.tag != "Paradise") ProfileManager.Instance.UpdateScore(_currentPawn.PawnObject.ScoreValue);
 
         if (isDraggedPawn)
         {
@@ -58,5 +62,10 @@ public class Cell : MonoBehaviour
 
             BoardGameManager.Instance.NewRound();
         }
+    }
+
+    public void UpdateSkin(SkinType newSkin)
+    {
+        _spriteRenderer.sprite = DataUtils.Instance.GetSpriteBySkinAndTier(newSkin, PawnTier.None, "cell");
     }
 }

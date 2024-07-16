@@ -36,6 +36,8 @@ public class Pawn : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.Instance;
+
+        SkinManager.Instance.OnSkinChange += UpdateSkin;
     }
 
     public void Init(bool bigScale = false)
@@ -53,8 +55,10 @@ public class Pawn : MonoBehaviour
             shadowRenderer.DOFade(.5f, 0f);
         }
 
-        spriteRenderer.sprite = _pawnObject.sprite;
-        shadowRenderer.sprite = _pawnObject.sprite;
+        var sprite = DataUtils.Instance.GetSpriteBySkinAndTier(SkinManager.Instance.currentSkin, _pawnObject.type);
+
+        spriteRenderer.sprite = sprite;
+        shadowRenderer.sprite = sprite;
 
         if (bigScale) transform.DOScale(Vector3.one, .5f).SetEase(_scaleInitCurve);
     }
@@ -133,9 +137,11 @@ public class Pawn : MonoBehaviour
                 {
                     cell.SetCurrentPawn(this);
 
-                    if (transform.tag == "Paradise")
+                    if (cell.GetComponent<CellBoard>())
                     {
-                        BoardGameManager.Instance.ParadiseCell.ResetCell();
+                        if (tag != "Paradise") BoardGameManager.Instance.NewRound();
+                        else BoardGameManager.Instance.ParadiseCell.ResetCell();
+
                     }
                     else
                     {
@@ -194,4 +200,12 @@ public class Pawn : MonoBehaviour
         }).AsyncWaitForCompletion(); ;
     }
 
+
+    public void UpdateSkin(SkinType newSkin)
+    {
+        Sprite newSprite = DataUtils.Instance.GetSpriteBySkinAndTier(newSkin, PawnObject.type);
+
+        spriteRenderer.sprite = newSprite;
+        shadowRenderer.sprite = newSprite;
+    }
 }

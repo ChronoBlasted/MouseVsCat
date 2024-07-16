@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1795ca874349eab4e96bd9be29d8843f, type: 3}
+  m_Name: SkinFruit
+  m_EditorClassIdentifier: 
+  SkinType: 0
+  background: {fileID: 21300000, guid: c1e44d41143e10644bfa597bceafae9a, type: 3}
+  cell: {fileID: 21300000, guid: f2f8156cd17e5a34cb23dfe3912b41b4, type: 3}
+  tier1: {fileID: -439098747, guid: bf89d64babc18494a91ddefa0ef8bf5c, type: 3}
+  tier2: {fileID: -529940085, guid: bf89d64babc18494a91ddefa0ef8bf5c, type: 3}
+  tier3: {fileID: -823725478, guid: bf89d64babc18494a91ddefa0ef8bf5c, type: 3}
+  tier4: {fileID: -409369227, guid: 97014d890251b524ab2536b61d700f0b, type: 3}
+  tier5: {fileID: 859772771, guid: bf89d64babc18494a91ddefa0ef8bf5c, type: 3}
+  tier6: {fileID: 367011801, guid: bf89d64babc18494a91ddefa0ef8bf5c, type: 3}
+  tier7: {fileID: 395468091, guid: bf89d64babc18494a91ddefa0ef8bf5c, type: 3}
+  tier8: {fileID: -1559880934, guid: 97014d890251b524ab2536b61d700f0b, type: 3}
+  tier9: {fileID: -561714013, guid: bf89d64babc18494a91ddefa0ef8bf5c, type: 3}

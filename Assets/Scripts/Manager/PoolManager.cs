@@ -74,6 +74,8 @@ public class PoolManager : MonoSingleton<PoolManager>
 
             objectToReset.tag = "Untagged";
 
+            objectToReset.transform.localScale = Vector3.one;
+
             poolDictionary[tag].Enqueue(objectToReset);
         }
         else

@@ -15,11 +15,10 @@ public enum PawnTier
     Tier9 = 9,
 }
 
-[CreateAssetMenu(fileName = "NewPawnObject", menuName = "GameScriptable/NewPawnObject", order = 1)]
+[CreateAssetMenu(fileName = "NewPawnObject", menuName = "PawnObject/New pawn object", order = 1)]
 public class PawnObject : ScriptableObject
 {
     public PawnTier type;
-    public Sprite sprite;
     public int ScoreValue;
 }
 
