@@ -22,6 +22,7 @@ public class ProfileManager : MonoSingleton<ProfileManager>
     {
         _highScore = SaveHandler.LoadValue("highScore", 0);
         _coins = SaveHandler.LoadValue("coins", 0);
+        _hardCurrency = SaveHandler.LoadValue("hardCurrency", 0);
 
         OnScoreUpdate?.Invoke(_score);
         OnHighScoreUpdate?.Invoke(_highScore);
@@ -63,6 +64,8 @@ public class ProfileManager : MonoSingleton<ProfileManager>
 
         OnCoinUpdate?.Invoke();
 
+        SaveHandler.SaveValue("coins", _coins);
+
         return true;
     }
 
@@ -76,6 +79,8 @@ public class ProfileManager : MonoSingleton<ProfileManager>
         _hardCurrency += amountToAdd;
 
         OnHardCurrencyUpdate?.Invoke();
+
+        SaveHandler.SaveValue("hardCurrency", _hardCurrency);
 
         return true;
     }

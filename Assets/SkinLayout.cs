@@ -24,6 +24,8 @@ public class SkinLayout : MonoBehaviour
         _previewImage.sprite = _skinData.tier9;
         _costTxt.text = _skinData.cost.ToString();
 
+        SkinManager.Instance.OnSkinChange += OnChangeSkinEvent;
+
         UpdateData();
     }
 
@@ -32,6 +34,8 @@ public class SkinLayout : MonoBehaviour
         if (SaveHandler.LoadValue(_skinData.SkinType.ToString(), "") == "owned")
         {
             SkinManager.Instance.ChangeSkin(_skinData.SkinType);
+
+            Equip();
         }
         else
         {
@@ -53,15 +57,9 @@ public class SkinLayout : MonoBehaviour
         if (isPossesed)
         {
             _buyLayout.SetActive(false);
+            _equipImage.gameObject.SetActive(true);
 
-            if (isEquipped)
-            {
-                _equipImage.sprite = _equippedSprite;
-            }
-            else
-            {
-                _equipImage.sprite = _canBeEquippedSprite;
-            }
+            _equipImage.sprite = isEquipped ? _equippedSprite : _canBeEquippedSprite;
         }
     }
 
@@ -77,5 +75,10 @@ public class SkinLayout : MonoBehaviour
         isEquipped = false;
 
         UpdateData();
+    }
+
+    public void OnChangeSkinEvent(SkinType skinType)
+    {
+        if (skinType != _skinData.SkinType) Unequip();
     }
 }
