@@ -20,6 +20,7 @@ public class PawnObject : ScriptableObject
 {
     public PawnTier type;
     public int ScoreValue;
+    public int Cost;
 }
 
 [Serializable]
