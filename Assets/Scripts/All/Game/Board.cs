@@ -10,7 +10,10 @@ public class Board : MonoBehaviour
 
     public void ResetBoard()
     {
-
+        foreach (CellBoard cell in AllCell)
+        {
+            cell.SetDefaultCell();
+        }
     }
 
     [ContextMenu("Find all closest cell")]

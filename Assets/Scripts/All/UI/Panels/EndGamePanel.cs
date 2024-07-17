@@ -29,7 +29,7 @@ public class EndGamePanel : Panel
 
     public void HandleReplayButton()
     {
-        GameManager.Instance.ReloadScene();
+        GameManager.Instance.RestartGame();
     }
 
     void UpdateScore(int score)

@@ -41,7 +41,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            ReloadScene();
+            RestartGame();
         }
     }
 
@@ -74,10 +74,14 @@ public class GameManager : MonoSingleton<GameManager>
     public void UpdateStateToGame() => UpdateGameState(GameState.GAME);
     public void UpdateStateToEnd() => UpdateGameState(GameState.END);
 
-    public void ReloadScene()
+    public void RestartGame()
     {
         DOTween.KillAll();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        BoardGameManager.Instance.ResetGame();
+        ProfileManager.Instance.ResetProfile();
+
+        UpdateStateToGame();
     }
 
     public void QuitApp() => Application.Quit();

@@ -41,6 +41,15 @@ public class Cell : MonoBehaviour
         }
     }
 
+    public void SetDefaultCell()
+    {
+        _currentPawn.ResetPawn();
+
+        PoolManager.Instance.ResetFromPool("Pawn", _currentPawn.gameObject);
+
+        ResetCell();
+    }
+
     private async void OnMouseUp()
     {
         if (_currentPawn == null && BoardGameManager.Instance.CurrentPawn != null && GameManager.Instance.GameState == GameState.GAME)

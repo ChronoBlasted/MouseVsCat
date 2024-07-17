@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
+using UnityEngine.Events;
 
 public class RewardedAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {
     [SerializeField] Button _showAdButton;
+    [SerializeField] UnityEvent _eventSuccess, _eventFailure;
 #if UNITY_ANDROID
     [SerializeField] string _androidAdUnitId = "Rewarded_Android";
 #elif UNITY_IOS
@@ -65,7 +67,11 @@ public class RewardedAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowLi
             Debug.Log("Unity Ads Rewarded Ad Completed");
             // Grant a reward.
 
-            ////////////////////////////
+            _eventSuccess?.Invoke();
+        }
+        else
+        {
+            _eventFailure?.Invoke();
         }
     }
 
@@ -74,12 +80,16 @@ public class RewardedAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowLi
     {
         Debug.Log($"Error loading Ad Unit {adUnitId}: {error.ToString()} - {message}");
         // Use the error details to determine whether to try to load another ad.
+
+        _eventFailure?.Invoke();
     }
 
     public void OnUnityAdsShowFailure(string adUnitId, UnityAdsShowError error, string message)
     {
         Debug.Log($"Error showing Ad Unit {adUnitId}: {error.ToString()} - {message}");
         // Use the error details to determine whether to try to load another ad.
+
+        _eventFailure?.Invoke();
     }
 
     public void OnUnityAdsShowStart(string adUnitId) { }

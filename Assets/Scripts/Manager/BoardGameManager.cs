@@ -22,14 +22,12 @@ public class BoardGameManager : MonoSingleton<BoardGameManager>
 
     public void Init()
     {
-        ResetGame();
-
         UpdateNextPawn();
 
         NewRound();
     }
 
-    void ResetGame()
+    public void ResetGame()
     {
         _board.ResetBoard();
         _currentRound = 0;

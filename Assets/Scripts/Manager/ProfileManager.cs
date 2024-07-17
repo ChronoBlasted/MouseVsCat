@@ -33,6 +33,8 @@ public class ProfileManager : MonoSingleton<ProfileManager>
         _score = 0;
         UpdateScore(0);
         PlayerPrefs.DeleteKey("coins");
+        _coins = 0;
+        AddCoins(0);
     }
 
     public void UpdateScore(int amountToAdd)
@@ -68,6 +70,11 @@ public class ProfileManager : MonoSingleton<ProfileManager>
         return true;
     }
 
+    public void HandleAddCoin(int amountToAdd)
+    {
+        AddCoins(amountToAdd);
+    }
+
     public bool AddHardCurrency(int amountToAdd)
     {
         if (_hardCurrency + amountToAdd < 0)
@@ -84,8 +91,20 @@ public class ProfileManager : MonoSingleton<ProfileManager>
         return true;
     }
 
+    public void HandleAddHardCurrency(int amountToAdd)
+    {
+        AddHardCurrency(amountToAdd);
+    }
+
     private void OnDestroy()
     {
         ResetProfile();
     }
+}
+
+public enum CurrencyType
+{
+    NONE,
+    COINS,
+    HARDCURR
 }
