@@ -56,7 +56,7 @@ public class CellBoard : Cell
             {
                 if (TopCell.CurrentPawn != null)
                 {
-                    if (TopCell.CurrentPawn.PawnObject.type == CurrentPawn.PawnObject.type)
+                    if (TopCell.CurrentPawn.PawnObject.tier == CurrentPawn.PawnObject.tier)
                     {
                         _adjacentSameCell.Add(TopCell);
                     }
@@ -70,7 +70,7 @@ public class CellBoard : Cell
             {
                 if (RightCell.CurrentPawn != null)
                 {
-                    if (RightCell.CurrentPawn.PawnObject.type == CurrentPawn.PawnObject.type)
+                    if (RightCell.CurrentPawn.PawnObject.tier == CurrentPawn.PawnObject.tier)
                     {
                         _adjacentSameCell.Add(RightCell);
                     }
@@ -84,7 +84,7 @@ public class CellBoard : Cell
             {
                 if (BottomCell.CurrentPawn != null)
                 {
-                    if (BottomCell.CurrentPawn.PawnObject.type == CurrentPawn.PawnObject.type)
+                    if (BottomCell.CurrentPawn.PawnObject.tier == CurrentPawn.PawnObject.tier)
                     {
                         _adjacentSameCell.Add(BottomCell);
                     }
@@ -98,7 +98,7 @@ public class CellBoard : Cell
             {
                 if (LeftCell.CurrentPawn != null)
                 {
-                    if (LeftCell.CurrentPawn.PawnObject.type == CurrentPawn.PawnObject.type)
+                    if (LeftCell.CurrentPawn.PawnObject.tier == CurrentPawn.PawnObject.tier)
                     {
                         _adjacentSameCell.Add(LeftCell);
                     }
@@ -155,9 +155,9 @@ public class CellBoard : Cell
 
                 newPawn = PoolManager.Instance.SpawnFromPool("Pawn", transform.position, transform.rotation).GetComponent<Pawn>();
 
-                PawnTier nextPawnType = DataUtils.Instance.GetNextPawnTypeByPawnType(currentPawn.PawnObject.type);
+                PawnTier nextPawnType = DataUtils.Instance.GetNextPawnTierByPawnTier(currentPawn.PawnObject.tier);
 
-                newPawn.PawnObject = DataUtils.Instance.GetPawnObjectByType(nextPawnType);
+                newPawn.PawnObject = DataUtils.Instance.GetPawnObjectByTier(nextPawnType);
 
                 newPawn.Init(true);
             }

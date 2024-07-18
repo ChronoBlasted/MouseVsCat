@@ -25,3 +25,4 @@ MonoBehaviour:
   tier7: {fileID: 21300000, guid: 309bdbbc0f22f2c42a4d1b87dd5ed1f3, type: 3}
   tier8: {fileID: 21300000, guid: 309bdbbc0f22f2c42a4d1b87dd5ed1f3, type: 3}
   tier9: {fileID: 21300000, guid: 309bdbbc0f22f2c42a4d1b87dd5ed1f3, type: 3}
+  joker1up: {fileID: 21300000, guid: c557fba7e04694247a149071fa5c91a1, type: 3}

@@ -19,7 +19,7 @@ public class PawnShopLayout : MonoBehaviour
 
         UpdateSkin(SkinManager.Instance.currentSkin);
 
-        cost = DataUtils.Instance.GetPawnObjectByType(_pawnTier).Cost;
+        cost = DataUtils.Instance.GetPawnObjectByTier(_pawnTier).Cost;
         _cost.text = cost.ToString();
     }
 
@@ -34,7 +34,7 @@ public class PawnShopLayout : MonoBehaviour
         {
             UIManager.Instance.ShopPanel.ClosePopup();
 
-            BoardGameManager.Instance.CurrentPawn.PawnObject = DataUtils.Instance.GetPawnObjectByType(_pawnTier);
+            BoardGameManager.Instance.CurrentPawn.PawnObject = DataUtils.Instance.GetPawnObjectByTier(_pawnTier);
 
             BoardGameManager.Instance.CurrentPawn.Init(true);
         }

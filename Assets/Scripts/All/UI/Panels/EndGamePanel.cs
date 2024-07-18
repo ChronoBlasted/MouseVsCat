@@ -20,6 +20,8 @@ public class EndGamePanel : Panel
     public override void OpenPanel()
     {
         base.OpenPanel();
+
+        Debug.Log("Open");
     }
 
     public override void ClosePanel()

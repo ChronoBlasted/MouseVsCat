@@ -8,18 +8,18 @@ public class DataUtils : MonoSingleton<DataUtils>
     [SerializeField] List<PawnObject> _pawnObjects;
     [SerializeField] List<SkinData> _allSkins;
 
-    public PawnObject GetPawnObjectByType(PawnTier pawnType)
+    public PawnObject GetPawnObjectByTier(PawnTier pawnType)
     {
         foreach (PawnObject obj in _pawnObjects)
         {
-            if (obj.type == pawnType) return obj;
+            if (obj.tier == pawnType) return obj;
         }
 
         return null;
     }
 
 
-    public PawnTier GetNextPawnTypeByPawnType(PawnTier type)
+    public PawnTier GetNextPawnTierByPawnTier(PawnTier type)
     {
         PawnTier[] values = (PawnTier[])Enum.GetValues(typeof(PawnTier));
 
@@ -69,6 +69,8 @@ public class DataUtils : MonoSingleton<DataUtils>
                 return skinData.tier8;
             case PawnTier.Tier9:
                 return skinData.tier9;
+            case PawnTier.Joker1up:
+                return skinData.joker1up;
         }
 
         if (other == "background")

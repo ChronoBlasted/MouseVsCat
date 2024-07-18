@@ -55,7 +55,7 @@ public class Pawn : MonoBehaviour
             shadowRenderer.DOFade(.5f, 0f);
         }
 
-        var sprite = DataUtils.Instance.GetSpriteBySkinAndTier(SkinManager.Instance.currentSkin, _pawnObject.type);
+        var sprite = DataUtils.Instance.GetSpriteBySkinAndTier(SkinManager.Instance.currentSkin, _pawnObject.tier);
 
         spriteRenderer.sprite = sprite;
         shadowRenderer.sprite = sprite;
@@ -129,24 +129,86 @@ public class Pawn : MonoBehaviour
             {
                 Cell cell = hitInfo.transform.GetComponent<Cell>();
 
-                if (cell.CurrentPawn != null)
+                switch (_pawnObject.type)
                 {
-                    ResetPawn();
-                }
-                else
-                {
-                    cell.SetCurrentPawn(this);
+                    case PawnType.CLASSIC:
 
-                    if (cell.GetComponent<CellBoard>())
-                    {
-                        if (tag != "Paradise") BoardGameManager.Instance.NewRound();
-                        else BoardGameManager.Instance.ParadiseCell.ResetCell();
+                        if (cell.CurrentPawn != null)
+                        {
+                            ResetPawn();
+                        }
+                        else
+                        {
+                            cell.SetCurrentPawn(this);
 
-                    }
-                    else
-                    {
-                        BoardGameManager.Instance.NewRound();
-                    }
+                            if (cell.GetComponent<CellBoard>())
+                            {
+                                if (tag != "Paradise") BoardGameManager.Instance.NewRound();
+                                else BoardGameManager.Instance.ParadiseCell.ResetCell();
+                            }
+                            else
+                            {
+                                BoardGameManager.Instance.NewRound();
+                            }
+                        }
+
+                        break;
+
+                    case PawnType.SPECIAL:
+                        switch (_pawnObject.tier)
+                        {
+                            case PawnTier.Joker1up:
+
+                                if (cell.CurrentPawn == null)
+                                {
+                                    if (cell.GetComponent<CellParadise>())
+                                    {
+                                        cell.SetCurrentPawn(this);
+
+                                        BoardGameManager.Instance.NewRound();
+                                    }
+                                    else
+                                    {
+                                        ResetPawn();
+                                        PoolManager.Instance.ResetFromPool("Pawn", gameObject);
+
+                                        if (tag != "Paradise") BoardGameManager.Instance.NewRound();
+                                        else BoardGameManager.Instance.ParadiseCell.ResetCell();
+                                    }
+                                }
+                                else
+                                {
+                                    if (cell.GetComponent<CellBoard>())
+                                    {
+                                        var newPawn = PoolManager.Instance.SpawnFromPool("Pawn", cell.transform.position, cell.transform.rotation).GetComponent<Pawn>();
+                                        PawnTier nextPawnType = DataUtils.Instance.GetNextPawnTierByPawnTier(cell.CurrentPawn.PawnObject.tier);
+                                        newPawn.PawnObject = DataUtils.Instance.GetPawnObjectByTier(nextPawnType);
+                                        newPawn.Init(true);
+
+                                        cell.SetDefaultCell();
+                                        cell.SetCurrentPawn(newPawn);
+
+                                        if (tag != "Paradise") BoardGameManager.Instance.NewRound();
+                                        else BoardGameManager.Instance.ParadiseCell.ResetCell();
+
+                                        ResetPawn();
+                                        PoolManager.Instance.ResetFromPool("Pawn", gameObject);
+                                    }
+                                    else
+                                    {
+                                        ResetPawn();
+                                    }
+                                }
+
+                                break;
+                            case PawnTier.JokerChoose:
+                                break;
+                            case PawnTier.SwitchCell:
+                                break;
+                            case PawnTier.DestroyCell:
+                                break;
+                        }
+                        break;
                 }
             }
             else
@@ -203,7 +265,7 @@ public class Pawn : MonoBehaviour
 
     public void UpdateSkin(SkinType newSkin)
     {
-        Sprite newSprite = DataUtils.Instance.GetSpriteBySkinAndTier(newSkin, PawnObject.type);
+        Sprite newSprite = DataUtils.Instance.GetSpriteBySkinAndTier(newSkin, PawnObject.tier);
 
         spriteRenderer.sprite = newSprite;
         shadowRenderer.sprite = newSprite;

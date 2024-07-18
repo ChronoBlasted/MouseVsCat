@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63e31b0603a87a345ae74138ac0ee565, type: 3}
   m_Name: Tier5
   m_EditorClassIdentifier: 
-  type: 5
+  tier: 5
+  type: 0
   ScoreValue: 16
-  Cost: 40
+  Cost: 96

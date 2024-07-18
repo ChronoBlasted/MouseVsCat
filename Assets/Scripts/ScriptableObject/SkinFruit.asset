@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SkinFruit
   m_EditorClassIdentifier: 
   SkinType: 0
+  cost: 0
   background: {fileID: 21300000, guid: c1e44d41143e10644bfa597bceafae9a, type: 3}
   cell: {fileID: 21300000, guid: f2f8156cd17e5a34cb23dfe3912b41b4, type: 3}
   tier1: {fileID: -439098747, guid: bf89d64babc18494a91ddefa0ef8bf5c, type: 3}
@@ -24,3 +25,4 @@ MonoBehaviour:
   tier7: {fileID: 395468091, guid: bf89d64babc18494a91ddefa0ef8bf5c, type: 3}
   tier8: {fileID: -1559880934, guid: 97014d890251b524ab2536b61d700f0b, type: 3}
   tier9: {fileID: -561714013, guid: bf89d64babc18494a91ddefa0ef8bf5c, type: 3}
+  joker1up: {fileID: 21300000, guid: c557fba7e04694247a149071fa5c91a1, type: 3}

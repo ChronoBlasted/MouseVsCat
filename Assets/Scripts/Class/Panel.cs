@@ -8,6 +8,8 @@ public abstract class Panel : MonoBehaviour
     [SerializeField] RectTransform _rectTransform;
     [SerializeField] CanvasGroup _canvasGroup;
 
+    Tweener _fadeTween;
+
     public virtual void Init()
     {
         _canvasGroup.blocksRaycasts = false;
@@ -17,7 +19,9 @@ public abstract class Panel : MonoBehaviour
 
     public virtual void OpenPanel()
     {
-        _canvasGroup.DOFade(1, .2f).OnComplete(() =>
+        if (_fadeTween.IsActive()) _fadeTween.Kill();
+
+        _fadeTween = _canvasGroup.DOFade(1, .2f).OnComplete(() =>
         {
             _canvasGroup.blocksRaycasts = true;
             _canvasGroup.interactable = true;
@@ -28,7 +32,10 @@ public abstract class Panel : MonoBehaviour
     {
         _canvasGroup.blocksRaycasts = false;
         _canvasGroup.interactable = false;
-        _canvasGroup.DOFade(0, .2f)
+
+        if (_fadeTween.IsActive()) _fadeTween.Kill();
+
+        _fadeTween = _canvasGroup.DOFade(0, .2f)
             .OnComplete(() =>
             {
                 gameObject.SetActive(false);

@@ -31,6 +31,13 @@ public class BoardGameManager : MonoSingleton<BoardGameManager>
     {
         _board.ResetBoard();
         _currentRound = 0;
+
+        _newPawnCell.SetDefaultCell();
+        _nextPawnCell.SetDefaultCell();
+        _paradiseCell.SetDefaultCell();
+
+        UpdateNextPawn();
+        NewRound();
     }
 
     public void NewRound()
@@ -92,7 +99,7 @@ public class BoardGameManager : MonoSingleton<BoardGameManager>
 
                 currentPawn.transform.SetParent(spawn);
 
-                currentPawn.PawnObject = DataUtils.Instance.GetPawnObjectByType(pawnProbs[i].type);
+                currentPawn.PawnObject = DataUtils.Instance.GetPawnObjectByTier(pawnProbs[i].type);
 
                 currentPawn.Init();
 

@@ -60,6 +60,9 @@ public class GameManager : MonoSingleton<GameManager>
             default:
                 break;
         }
+
+        Debug.Log("New gamestate : " + _gameState);
+
         OnGameStateChanged?.Invoke(_gameState);
     }
 

@@ -27,6 +27,8 @@ public class SettingPopup : Popup
     public override void ClosePopup()
     {
         base.ClosePopup();
+
+        Debug.Log("Close");
     }
 
     public void SwitchSound()

@@ -32,7 +32,6 @@ public class Cell : MonoBehaviour
         }
     }
 
-
     public virtual void ResetCell()
     {
         if (_currentPawn != null)
@@ -43,6 +42,8 @@ public class Cell : MonoBehaviour
 
     public void SetDefaultCell()
     {
+        if (_currentPawn == null) return;
+
         _currentPawn.ResetPawn();
 
         PoolManager.Instance.ResetFromPool("Pawn", _currentPawn.gameObject);
@@ -52,7 +53,7 @@ public class Cell : MonoBehaviour
 
     private async void OnMouseUp()
     {
-        if (_currentPawn == null && BoardGameManager.Instance.CurrentPawn != null && GameManager.Instance.GameState == GameState.GAME)
+        if (_currentPawn == null && BoardGameManager.Instance.CurrentPawn.PawnObject.type == PawnType.CLASSIC && BoardGameManager.Instance.CurrentPawn != null && GameManager.Instance.GameState == GameState.GAME)
         {
             _currentPawn = BoardGameManager.Instance.CurrentPawn;
             BoardGameManager.Instance.CurrentPawn = null;

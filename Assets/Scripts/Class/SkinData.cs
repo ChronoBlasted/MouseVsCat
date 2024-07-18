@@ -20,4 +20,6 @@ public class SkinData : ScriptableObject
     public Sprite tier7;
     public Sprite tier8;
     public Sprite tier9;
+
+    public Sprite joker1up;
 }
