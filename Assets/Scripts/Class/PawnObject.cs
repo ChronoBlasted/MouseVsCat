@@ -19,19 +19,13 @@ public enum PawnTier
     DestroyCell = 103,
 }
 
-public enum PawnType
-{
-    CLASSIC,
-    SPECIAL
-}
-
 [CreateAssetMenu(fileName = "NewPawnObject", menuName = "PawnObject/New pawn object", order = 1)]
 public class PawnObject : ScriptableObject
 {
     public PawnTier tier;
-    public PawnType type;
     public int ScoreValue;
     public int Cost;
+    public bool isSpecial;
 }
 
 [Serializable]

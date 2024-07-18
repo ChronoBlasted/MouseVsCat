@@ -6976,7 +6976,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8ce46a7b898e5ba439759d7fa8e56bfa, type: 2}
   - {fileID: 11400000, guid: 629723ae16948194bab4480bcbe2aa5d, type: 2}
   - {fileID: 11400000, guid: 10215931c7441e143b2746f9c442f0f6, type: 2}
-  - {fileID: 11400000, guid: d3d451f7e730bd24f8bec3d1ebfc5a62, type: 2}
+  - {fileID: 11400000, guid: cd4b10de9cf9f3e4e878e67bd1cccf42, type: 2}
   _allSkins:
   - {fileID: 11400000, guid: 4079ecbf2597e0e45bd35c7464be8b05, type: 2}
   - {fileID: 11400000, guid: 05bce7e49693b1842b98ff44ff846f07, type: 2}
