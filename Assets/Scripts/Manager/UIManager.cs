@@ -6,9 +6,10 @@ public class UIManager : MonoSingleton<UIManager>
 {
     [SerializeField] EndGamePanel _endGamePanel;
 
-    [SerializeField] SettingPopup _settingPanel;
-    [SerializeField] ShopPopup _shopPanel;
-    [SerializeField] BlankPanel _blankPanel;
+    [SerializeField] SettingPopup _settingPopup;
+    [SerializeField] ShopPopup _shopPopup;
+    [SerializeField] ChooseNewPawnPopup _chooseNewPawnPopup;
+    [SerializeField] SelectTwoPawnPopup _selectTwoPawnPopup;
 
     public Canvas MainCanvas;
 
@@ -16,9 +17,10 @@ public class UIManager : MonoSingleton<UIManager>
     Popup _currentPopup;
 
     public EndGamePanel EndGamePanel { get => _endGamePanel; }
-    public BlankPanel BlankPanel { get => _blankPanel; }
     public Popup CurrentPopup { get => _currentPopup; set => _currentPopup = value; }
-    public ShopPopup ShopPanel { get => _shopPanel; }
+    public ShopPopup ShopPanel { get => _shopPopup; }
+    public ChooseNewPawnPopup ChooseNewPawnPopup { get => _chooseNewPawnPopup; }
+    public SelectTwoPawnPopup SelectTwoPawnPopup { get => _selectTwoPawnPopup; }
 
     public void Init()
     {
@@ -30,10 +32,9 @@ public class UIManager : MonoSingleton<UIManager>
     public void InitPanel()
     {
         _endGamePanel.Init();
-        _blankPanel.Init();
 
-        _settingPanel.Init();
-        _shopPanel.Init();
+        _settingPopup.Init();
+        _shopPopup.Init();
     }
 
     public void OpenPanel(Panel newPanel)
@@ -94,19 +95,12 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void HandleOpenSettings()
     {
-        AddPopup(_settingPanel);
+        AddPopup(_settingPopup);
     }
 
     public void HandleOpenShop()
     {
-        AddPopup(_shopPanel);
+        AddPopup(_shopPopup);
     }
-
-    public void HandleOpenBlank()
-    {
-        OpenPanel(_blankPanel);
-    }
-
     #endregion
-
 }
