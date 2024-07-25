@@ -22,4 +22,7 @@ public class SkinData : ScriptableObject
     public Sprite tier9;
 
     public Sprite joker1up;
+    public Sprite jokerChoose;
+    public Sprite destroyPawn;
+    public Sprite switchPawn;
 }

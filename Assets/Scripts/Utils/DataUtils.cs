@@ -71,6 +71,12 @@ public class DataUtils : MonoSingleton<DataUtils>
                 return skinData.tier9;
             case PawnTier.Joker1up:
                 return skinData.joker1up;
+            case PawnTier.JokerChoose:
+                return skinData.jokerChoose;
+            case PawnTier.DestroyPawn:
+                return skinData.destroyPawn;
+            case PawnTier.SwitchCellPawn:
+                return skinData.switchPawn;
         }
 
         if (other == "background")

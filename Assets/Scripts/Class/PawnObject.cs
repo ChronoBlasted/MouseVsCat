@@ -15,8 +15,8 @@ public enum PawnTier
     Tier9 = 9,
     Joker1up = 100,
     JokerChoose = 101,
-    SwitchCell = 102,
-    DestroyCell = 103,
+    SwitchCellPawn = 102,
+    DestroyPawn = 103,
 }
 
 [CreateAssetMenu(fileName = "NewPawnObject", menuName = "PawnObject/New pawn object", order = 1)]

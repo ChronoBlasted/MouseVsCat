@@ -3246,6 +3246,8 @@ MonoBehaviour:
   _shopPopup: {fileID: 222959936}
   _chooseNewPawnPopup: {fileID: 9213539457299045845}
   _selectTwoPawnPopup: {fileID: 4812732225620049578}
+  _blackShade: {fileID: 1676321512}
+  _blackShadeBtn: {fileID: 1676321514}
   MainCanvas: {fileID: 1800357382}
 --- !u!224 &1016828498 stripped
 RectTransform:
@@ -5278,7 +5280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.627451}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7082,6 +7084,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 629723ae16948194bab4480bcbe2aa5d, type: 2}
   - {fileID: 11400000, guid: 10215931c7441e143b2746f9c442f0f6, type: 2}
   - {fileID: 11400000, guid: cd4b10de9cf9f3e4e878e67bd1cccf42, type: 2}
+  - {fileID: 11400000, guid: 2b62dd4c7406c10478d2a7bfdd7c1bea, type: 2}
+  - {fileID: 11400000, guid: 49879bd3e61960b46b7f31363b5b4869, type: 2}
+  - {fileID: 11400000, guid: 746b4bf8c11832e42b0ab2feb014b3ef, type: 2}
   _allSkins:
   - {fileID: 11400000, guid: 4079ecbf2597e0e45bd35c7464be8b05, type: 2}
   - {fileID: 11400000, guid: 05bce7e49693b1842b98ff44ff846f07, type: 2}
@@ -11592,7 +11597,7 @@ MonoBehaviour:
   pawnProbs:
   - type: 1
     prob: 40
-  - type: 100
+  - type: 2
     prob: 30
   - type: 3
     prob: 25
@@ -11601,6 +11606,14 @@ MonoBehaviour:
   - type: 5
     prob: 5
   - type: 6
+    prob: 1
+  - type: 100
+    prob: 1
+  - type: 101
+    prob: 1
+  - type: 102
+    prob: 1
+  - type: 103
     prob: 1
   mergeStreak: 0
 --- !u!1001 &9213539457299045843

@@ -1,5 +1,6 @@
 using BaseTemplate.Behaviours;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class UIManager : MonoSingleton<UIManager>
@@ -10,6 +11,9 @@ public class UIManager : MonoSingleton<UIManager>
     [SerializeField] ShopPopup _shopPopup;
     [SerializeField] ChooseNewPawnPopup _chooseNewPawnPopup;
     [SerializeField] SelectTwoPawnPopup _selectTwoPawnPopup;
+
+    [SerializeField] Image _blackShade;
+    [SerializeField] Button _blackShadeBtn;
 
     public Canvas MainCanvas;
 

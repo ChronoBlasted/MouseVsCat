@@ -26,3 +26,6 @@ MonoBehaviour:
   tier8: {fileID: -1559880934, guid: 97014d890251b524ab2536b61d700f0b, type: 3}
   tier9: {fileID: -561714013, guid: bf89d64babc18494a91ddefa0ef8bf5c, type: 3}
   joker1up: {fileID: 21300000, guid: c557fba7e04694247a149071fa5c91a1, type: 3}
+  jokerChoose: {fileID: 21300000, guid: e1f5a66477c907f45bff8e9b592baf22, type: 3}
+  destroyPawn: {fileID: 21300000, guid: 169717c2cfebbe6438b937324a2993ce, type: 3}
+  switchPawn: {fileID: 21300000, guid: fc86c09b65c11df4783e0fb2ff14ccde, type: 3}
