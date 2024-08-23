@@ -1472,7 +1472,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1497,7 +1497,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -40}
+  m_LocalPosition: {x: 0, y: 0, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2421,7 +2421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &824126240
 Transform:
   m_ObjectHideFlags: 0
@@ -4138,7 +4138,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bannerPosition: 4
-  _androidAdUnitId: Banner_Android
 --- !u!114 &1428633351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5281,7 +5280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5398,7 +5397,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 0
+  m_Priority: 1
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 1279246290}
   m_Follow: {fileID: 1279246290}
@@ -7615,6 +7614,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1416791555415207288, guid: c9bb8c1d000254644b2c13c1df325294, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1456409148723087702, guid: c9bb8c1d000254644b2c13c1df325294, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8161,6 +8164,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3098249549099267731, guid: c9bb8c1d000254644b2c13c1df325294, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280618645381006428, guid: c9bb8c1d000254644b2c13c1df325294, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3317109696186927888, guid: c9bb8c1d000254644b2c13c1df325294, type: 3}
@@ -10053,23 +10060,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9130181124906283919, guid: c9bb8c1d000254644b2c13c1df325294, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9130181124906283919, guid: c9bb8c1d000254644b2c13c1df325294, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9130181124906283919, guid: c9bb8c1d000254644b2c13c1df325294, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 9130181124906283919, guid: c9bb8c1d000254644b2c13c1df325294, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 9130181124906283919, guid: c9bb8c1d000254644b2c13c1df325294, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 699.6019
       objectReference: {fileID: 0}
     - target: {fileID: 9135518624159908379, guid: c9bb8c1d000254644b2c13c1df325294, type: 3}
       propertyPath: m_AnchorMax.y
@@ -11608,10 +11615,6 @@ MonoBehaviour:
   - type: 6
     prob: 1
   - type: 100
-    prob: 1
-  - type: 101
-    prob: 1
-  - type: 102
     prob: 1
   - type: 103
     prob: 1

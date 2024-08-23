@@ -8,7 +8,7 @@ public class Joker1upPawn : PawnObjectSpecial
     public override bool OnDropWithPawn(Pawn owner, Cell cellToInteract)
     {
         var newPawn = PoolManager.Instance.SpawnFromPool("Pawn", cellToInteract.transform.position, cellToInteract.transform.rotation).GetComponent<Pawn>();
-        PawnTier nextPawnType = DataUtils.Instance.GetNextPawnTierByPawnTier(cellToInteract.CurrentPawn.PawnObject.tier);
+        PawnTier nextPawnType = DataUtils.Instance.GetNextPawnTierByPawnTier(cellToInteract.CurrentPawn.PawnObject.tier, amountOfBonus);
         newPawn.PawnObject = DataUtils.Instance.GetPawnObjectByTier(nextPawnType);
         newPawn.Init(true);
 

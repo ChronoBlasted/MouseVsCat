@@ -19,12 +19,12 @@ public class DataUtils : MonoSingleton<DataUtils>
     }
 
 
-    public PawnTier GetNextPawnTierByPawnTier(PawnTier type)
+    public PawnTier GetNextPawnTierByPawnTier(PawnTier type, int amount = 1)
     {
         PawnTier[] values = (PawnTier[])Enum.GetValues(typeof(PawnTier));
 
         int currentEnumInt = (int)type;
-        int nextEnumInt = currentEnumInt + 1;
+        int nextEnumInt = currentEnumInt + amount;
 
         if (nextEnumInt >= values.Length)
         {

@@ -1,7 +1,5 @@
 using BaseTemplate.Behaviours;
-using GooglePlayGames;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
 
 public class GoogleManager : MonoSingleton<GoogleManager>
 {
